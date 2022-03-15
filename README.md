@@ -1,1 +1,1 @@
-A student enrollment management system with Java
+A Student Enrollment Management System with Java
