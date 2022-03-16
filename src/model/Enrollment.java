@@ -13,6 +13,6 @@ public class Enrollment {
 
     @Override
     public String toString() {
-        return student.toString() + "\t" + course.toString() + "\t" + semester;
+        return student.toString() + "," + course.toString() + "," + semester;
     }
 }

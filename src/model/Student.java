@@ -15,6 +15,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return String.format("%s\t%s\t%s", ID, name, birthdate == null ? "########" : birthdate);
+        return String.format("%s,%s,%s", ID, name, birthdate == null ? "########" : birthdate);
     }
 }

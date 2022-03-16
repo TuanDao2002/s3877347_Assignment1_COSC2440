@@ -13,6 +13,6 @@ public class Course {
 
     @Override
     public String toString() {
-        return String.format("%s\t%s\t%s", ID, name, credits);
+        return String.format("%s,%s,%s", ID, name, credits);
     }
 }
