@@ -1,5 +1,7 @@
 package model;
 
+import utility.DateConverter;
+
 import java.util.Date;
 
 public class Student {
@@ -15,6 +17,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s", ID, name, birthdate == null ? "########" : birthdate);
+        return String.format("%s,%s,%s", ID, name, birthdate == null ? "unknown" : DateConverter.dateToString(birthdate));
     }
 }
