@@ -8,10 +8,18 @@ public final class DateConverter {
     private static final String datePattern = "MM/dd/yyyy";
     private DateConverter(){}
 
-    public static Date stringToDate(String dateString) throws ParseException {
+    public static Date stringToDate(String dateString) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datePattern);
         simpleDateFormat.setLenient(false);
-        return simpleDateFormat.parse(dateString);
+
+        Date newDateObj;
+        try{
+           newDateObj = simpleDateFormat.parse(dateString);
+        } catch (ParseException e) {
+            newDateObj = null;
+        }
+
+        return newDateObj;
     }
 
     public static String dateToString(Date date) {
