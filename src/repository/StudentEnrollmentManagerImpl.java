@@ -15,8 +15,9 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
     private static final ArrayList<Course> courseList = new ArrayList<>();
     private DataService dataService;
 
-    public StudentEnrollmentManagerImpl() {
-        this.dataService = new CSVDataService();
+    public StudentEnrollmentManagerImpl(DataService dataService) {
+        this.dataService = dataService;
+        populateData();
     }
 
     private void populateData(){
