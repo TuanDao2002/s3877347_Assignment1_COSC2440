@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Course {
     private String ID;
     private String name;
@@ -13,6 +15,19 @@ public class Course {
 
     public String getID() {
         return ID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return credits == course.credits && ID.equals(course.ID) && name.equals(course.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID, name, credits);
     }
 
     @Override

@@ -14,7 +14,7 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
     private static final ArrayList<Enrollment> enrollmentList = new ArrayList<>();
     private static final  ArrayList<Student> studentList = new ArrayList<>();
     private static final ArrayList<Course> courseList = new ArrayList<>();
-    private DataService dataService;
+    private final DataService dataService;
 
     public StudentEnrollmentManagerImpl() {
         this.dataService = new CSVDataService();
@@ -41,9 +41,9 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
      * @return the Student object or null if it does not exist
      */
     public Student getStudentById(String studentID) {
-        for (Student s : studentList) {
-            if (s.getID().equals(studentID)) {
-                return s;
+        for (Student student : studentList) {
+            if (student.getID().equals(studentID)) {
+                return student;
             }
         }
 
@@ -56,9 +56,9 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
      * @return the Course object or null if it does not exist
      */
     public Course getCourseById(String courseID) {
-        for (Course c : courseList) {
-            if (c.getID().equals(courseID)) {
-                return c;
+        for (Course course : courseList) {
+            if (course.getID().equals(courseID)) {
+                return course;
             }
         }
 
@@ -145,11 +145,11 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
      */
     @Override
     public Enrollment getOne(String studentID, String courseID, String semester) {
-        for (Enrollment e : enrollmentList) {
-            if (e.getStudent().getID().equals(studentID)
-                    && e.getCourse().getID().equals(courseID)
-                    && e.getSemester().equals(semester)) {
-                return e;
+        for (Enrollment enrollment : enrollmentList) {
+            if (enrollment.getStudent().getID().equals(studentID)
+                    && enrollment.getCourse().getID().equals(courseID)
+                    && enrollment.getSemester().equals(semester)) {
+                return enrollment;
             }
         }
         return null;
