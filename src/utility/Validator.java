@@ -10,7 +10,7 @@ public final class Validator {
     }
 
     public static boolean checkInteger(int num) {
-        return num != -1;
+        return num > 0;
     }
 
     public static boolean checkSemester(String semester) {
