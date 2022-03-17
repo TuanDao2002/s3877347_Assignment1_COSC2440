@@ -4,7 +4,6 @@ import interfaces.StudentEnrollmentManager;
 import model.Course;
 import model.Enrollment;
 import model.Student;
-import repository.StudentEnrollmentManagerImpl;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -32,6 +31,7 @@ public class GetReportService {
             }
         }
 
+        // use set to prevent duplicates
         Set<Course> set = new LinkedHashSet<>(resultCourseList);
         resultCourseList.clear();
         resultCourseList.addAll(set);
@@ -53,6 +53,7 @@ public class GetReportService {
             }
         }
 
+        // use set to prevent duplicates
         Set<Student> set = new LinkedHashSet<>(resultStudentList);
         resultStudentList.clear();
         resultStudentList.addAll(set);
@@ -73,6 +74,7 @@ public class GetReportService {
             }
         }
 
+        // use set to prevent duplicates
         Set<Course> set = new LinkedHashSet<>(resultCourseList);
         resultCourseList.clear();
         resultCourseList.addAll(set);
