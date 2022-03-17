@@ -21,6 +21,12 @@ public class CSVDataService implements DataService {
         csvDataFileName = fileName;
     }
 
+    /**
+     * A method to verify and add new Student object to the ArrayList
+     * @param studentArrayList: the list of Student objects
+     * @param inReader: the StringTokenizer object used to read the field values in CSV file
+     * @return a new Student object from CSV file or null if the field value is invalid
+     */
     private Student getNewStudent(ArrayList<Student> studentArrayList, StringTokenizer inReader) {
         // add new Student object to studentArrayList
         String studentID = inReader.nextToken();
@@ -36,7 +42,7 @@ public class CSVDataService implements DataService {
 
         Student newStudent = new Student(studentID, studentName, birthDate);
 
-        // if there is duplicate, return the new object immediately without adding it to the arraylist
+        // if there is duplicate, return the new object immediately without adding it to the arraylist and continuing the program
         for (Student s : studentArrayList) {
             if (s.toString().equals(newStudent.toString())) {
                 return newStudent;
@@ -47,6 +53,12 @@ public class CSVDataService implements DataService {
         return newStudent;
     }
 
+    /**
+     * A method to verify and add new Course object to the ArrayList
+     * @param courseArrayList: the list of Student objects
+     * @param inReader: the StringTokenizer object used to read the field values in CSV file
+     * @return a new Course object from CSV file or null if the field value is invalid
+     */
     private Course getNewCourse(ArrayList<Course> courseArrayList, StringTokenizer inReader) {
         // add new Course object to courseArrayList
         String courseID = inReader.nextToken();
@@ -55,14 +67,14 @@ public class CSVDataService implements DataService {
         String creditString = inReader.nextToken();
         int credits = StringConverter.stringToInt(creditString);
 
-        if (!Validator.checkInteger(credits)) {
+        if (!Validator.checkCredit(credits)) {
             System.out.println(csvDataFileName + " has invalid credit format.");
             return null;
         }
 
         Course newCourse = new Course(courseID, courseName, credits);
 
-        // if there is duplicate, return the new object immediately without adding it to the arraylist
+        // if there is duplicate, return the new object immediately without adding it to the arraylist and continuing the program
         for (Course c: courseArrayList) {
             if (c.toString().equals(newCourse.toString())) {
                 return newCourse;
@@ -73,6 +85,14 @@ public class CSVDataService implements DataService {
         return newCourse;
     }
 
+    /**
+     * A method to verify and add new Enrollment object to the ArrayList
+     * @param enrollmentArrayList: the list of Enrollment objects
+     * @param newStudent: the list of Student objects
+     * @param newCourse: the list of Course objects
+     * @param inReader: the StringTokenizer object used to read the field values in CSV file
+     * @return a new Enrollment object from CSV file or null if the field value is invalid
+     */
     private Enrollment getNewEnrollment(ArrayList<Enrollment> enrollmentArrayList, Student newStudent, Course newCourse, StringTokenizer inReader) {
         // add new Enrollment object to enrollmentArrayList
         String semester = inReader.nextToken();
@@ -83,7 +103,7 @@ public class CSVDataService implements DataService {
 
         Enrollment newEnrollment = new Enrollment(newStudent, newCourse, semester);
 
-        // if there is duplicate, return the new object immediately without adding it to the arraylist
+        // if there is duplicate, return the new object immediately without adding it to the arraylist and continuing the program
         for (Enrollment e : enrollmentArrayList) {
             if (e.toString().equals(newEnrollment.toString())) {
                 return newEnrollment;
@@ -94,6 +114,13 @@ public class CSVDataService implements DataService {
         return newEnrollment;
     }
 
+    /**
+     * A method to read from a CSV file and populate the ArrayList with new data objects
+     * @param enrollmentArrayList: the list of Enrollment objects
+     * @param studentArrayList: the list of Student objects
+     * @param courseArrayList: the list of Course objects
+     * @return boolean indicates whether the ArrayLists are populated or not
+     */
     @Override
     public boolean populateArrayList(ArrayList<Enrollment> enrollmentArrayList, ArrayList<Student> studentArrayList, ArrayList<Course> courseArrayList) {
         try {

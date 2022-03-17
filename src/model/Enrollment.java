@@ -11,6 +11,14 @@ public class Enrollment {
         this.semester = semester;
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
     public String getSemester() {
         return semester;
     }
