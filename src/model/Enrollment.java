@@ -11,6 +11,10 @@ public class Enrollment {
         this.semester = semester;
     }
 
+    public String getSemester() {
+        return semester;
+    }
+
     @Override
     public String toString() {
         return student.toString() + "," + course.toString() + "," + semester;

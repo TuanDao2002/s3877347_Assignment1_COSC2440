@@ -15,6 +15,10 @@ public class Student {
         this.birthdate = birthdate;
     }
 
+    public String getID() {
+        return ID;
+    }
+
     @Override
     public String toString() {
         return String.format("%s,%s,%s", ID, name, birthdate == null ? "unknown" : DateConverter.dateToString(birthdate));

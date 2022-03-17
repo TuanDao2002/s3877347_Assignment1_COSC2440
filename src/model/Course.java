@@ -11,6 +11,10 @@ public class Course {
         this.credits = credits;
     }
 
+    public String getID() {
+        return ID;
+    }
+
     @Override
     public String toString() {
         return String.format("%s,%s,%s", ID, name, credits);
