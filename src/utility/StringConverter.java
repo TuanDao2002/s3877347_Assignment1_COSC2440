@@ -18,13 +18,4 @@ public final class StringConverter {
 
         return num;
     }
-
-    /**
-     * A method to convert integer to String
-     * @param num: the integer required to be converted to String
-     * @return a new String object
-     */
-    public static String intToString(int num) {
-        return Integer.toString(num);
-    }
 }

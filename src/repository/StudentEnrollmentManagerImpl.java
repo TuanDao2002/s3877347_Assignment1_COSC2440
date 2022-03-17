@@ -75,10 +75,19 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
     @Override
     public boolean add(String studentID, String courseID, String semester) {
         Student student = getStudentById(studentID);
-        Course course = getCourseById(courseID);
+        if (student == null) {
+            System.out.println("Student with ID: " + studentID + " does not exist.");
+            return false;
+        }
 
-        if (!Validator.checkEnrollment(student, course, semester)) {
-            System.out.println("The enrollment cannot be added.");
+        Course course = getCourseById(courseID);
+        if (course == null) {
+            System.out.println("Course with ID: " + courseID + " does not exist.");
+            return false;
+        }
+
+        if (!Validator.checkSemester(semester)) {
+            System.out.println(semester + " is invalid semester format.");
             return false;
         }
 
@@ -88,7 +97,6 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
         }
 
         enrollmentList.add(new Enrollment(student, course, semester));
-        System.out.println("The new enrollment is added.");
         return true;
     }
 
@@ -120,9 +128,11 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
     @Override
     public boolean delete(String studentID, String courseID, String semester) {
         Enrollment deleteEnrollment = getOne(studentID, courseID, semester);
-        if (deleteEnrollment == null) return false;
+        if (deleteEnrollment == null) {
+            System.out.println("The enrollment does not exist");
+            return false;
+        }
         enrollmentList.remove(deleteEnrollment);
-        System.out.println("The enrollment is deleted.");
         return true;
     }
 

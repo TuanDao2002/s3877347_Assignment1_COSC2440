@@ -1,8 +1,5 @@
 package utility;
 
-import model.Course;
-import model.Student;
-
 import java.util.Date;
 
 public final class Validator {
@@ -33,16 +30,5 @@ public final class Validator {
      */
     public static boolean checkSemester(String semester) {
         return semester.matches("^(19|20)\\d{2}[A-C]$");
-    }
-
-    /**
-     * A method to check if the enrollment is valid
-     * @param student: the Student Object of the enrollment
-     * @param course: the Course Object of the enrollment
-     * @param semester: the semester of the enrollment
-     * @return boolean indicates whether the enrollment is valid
-     */
-    public static boolean checkEnrollment(Student student, Course course, String semester) {
-        return student != null && course != null && checkSemester(semester);
     }
 }
