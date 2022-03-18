@@ -21,6 +21,11 @@ public class CSVWriterService implements WriterService {
         this.fileName = semester;
     }
 
+    /**
+     * A method to write the result list of courses to a CSV file
+     * @param resultCourseList: the result list of courses needed to be written to CSV file
+     * @return boolean indicates whether the list can be written or not
+     */
     @Override
     public boolean writeCourses(ArrayList<Course> resultCourseList) {
         PrintWriter output;
@@ -41,6 +46,11 @@ public class CSVWriterService implements WriterService {
         }
     }
 
+    /**
+     * A method to write the result list of students to a CSV file
+     * @param resultStudentList: the result list of students needed to be written to CSV file
+     * @return boolean indicates whether the list can be written or not
+     */
     @Override
     public boolean writeStudents(ArrayList<Student> resultStudentList) {
         PrintWriter output;
