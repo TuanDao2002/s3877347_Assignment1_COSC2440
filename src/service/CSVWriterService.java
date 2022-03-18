@@ -1,6 +1,5 @@
 package service;
 
-import interfaces.WriterService;
 import model.Course;
 import model.Student;
 
@@ -9,7 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class CSVWriterService implements WriterService {
+public class CSVWriterService {
     private final String fileName;
 
     public CSVWriterService(String id, String semester) {
@@ -26,7 +25,6 @@ public class CSVWriterService implements WriterService {
      * @param resultCourseList: the result list of courses needed to be written to CSV file
      * @return boolean indicates whether the list can be written or not
      */
-    @Override
     public boolean writeCourses(ArrayList<Course> resultCourseList) {
         PrintWriter output;
         try {
@@ -51,7 +49,6 @@ public class CSVWriterService implements WriterService {
      * @param resultStudentList: the result list of students needed to be written to CSV file
      * @return boolean indicates whether the list can be written or not
      */
-    @Override
     public boolean writeStudents(ArrayList<Student> resultStudentList) {
         PrintWriter output;
         try {
