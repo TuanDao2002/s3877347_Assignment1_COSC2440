@@ -1,7 +1,9 @@
 package repository;
 
+import interfaces.CourseManager;
 import interfaces.DataService;
 import interfaces.StudentEnrollmentManager;
+import interfaces.StudentManager;
 import model.Course;
 import model.Enrollment;
 import model.Student;
@@ -10,7 +12,7 @@ import utility.Validator;
 
 import java.util.ArrayList;
 
-public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
+public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager, StudentManager, CourseManager {
     private static final ArrayList<Enrollment> enrollmentList = new ArrayList<>();
     private static final  ArrayList<Student> studentList = new ArrayList<>();
     private static final ArrayList<Course> courseList = new ArrayList<>();
@@ -38,6 +40,7 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
      * @param studentID: the student ID of the Student object
      * @return the Student object or null if it does not exist
      */
+    @Override
     public Student getStudentById(String studentID) {
         for (Student student : studentList) {
             if (student.getID().equals(studentID)) {
@@ -53,6 +56,7 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
      * @param courseID: the course ID of the Course object
      * @return the Course object or null if it does not exist
      */
+    @Override
     public Course getCourseById(String courseID) {
         for (Course course : courseList) {
             if (course.getID().equals(courseID)) {

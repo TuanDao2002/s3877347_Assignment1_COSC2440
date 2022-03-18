@@ -1,5 +1,8 @@
 package utility;
 
+import interfaces.CourseManager;
+import interfaces.StudentManager;
+
 import java.util.Date;
 
 public final class Validator {
@@ -30,5 +33,25 @@ public final class Validator {
      */
     public static boolean checkSemester(String semester) {
         return semester.matches("^(19|20)\\d{2}[A-C]$");
+    }
+
+    /**
+     * A method to check if a student ID exists
+     * @param studentManager: the system object that manage Student objects
+     * @param studentID: the student ID required to be checked
+     * @return boolean indicates whether the student ID exists or not
+     */
+    public static boolean checkStudent(StudentManager studentManager, String studentID) {
+        return studentManager.getStudentById(studentID) != null;
+    }
+
+    /**
+     * A method to check if a course ID exists
+     * @param courseManager: the system object that manage Ctudent objects
+     * @param courseID: the course ID required to be checked
+     * @return boolean indicates whether the course ID exists or not
+     */
+    public static boolean checkCourse(CourseManager courseManager, String courseID) {
+        return courseManager.getCourseById(courseID) != null;
     }
 }
