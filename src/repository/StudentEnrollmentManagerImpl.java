@@ -101,24 +101,6 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
     }
 
     /**
-     * A method to update enrollment
-     * @param studentID: the student ID of the enrollment
-     * @param courseID: the course ID of the enrollment
-     * @param semester: the semester of the enrollment
-     * @param deleteMode set to true if users want to delete the enrollment. Otherwise, the enrollment will be added
-     * @return boolean indicates whether the enrollment is updated or not
-     */
-    @Override
-    public boolean update(String studentID, String courseID, String semester, boolean deleteMode) {
-        if (deleteMode) {
-            delete(studentID, courseID, semester);
-        } else {
-            add(studentID, courseID, semester);
-        }
-        return false;
-    }
-
-    /**
      * A method to delete enrollment
      * @param studentID: the student ID of the enrollment
      * @param courseID: the course ID of the enrollment

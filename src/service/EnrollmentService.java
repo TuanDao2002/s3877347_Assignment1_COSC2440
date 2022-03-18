@@ -20,10 +20,6 @@ public class EnrollmentService {
         studentEnrollmentManager.add(studentID, courseID, semester);
     }
 
-    public void updateEnrollment(String studentID, String courseID, String semester, boolean deleteMode) {
-        studentEnrollmentManager.update(studentID, courseID, semester, deleteMode);
-    }
-
     public void deleteEnrollment(String studentID, String courseID, String semester) {
         studentEnrollmentManager.delete(studentID, courseID, semester);
     }
