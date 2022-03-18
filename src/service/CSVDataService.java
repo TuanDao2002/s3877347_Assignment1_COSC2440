@@ -36,7 +36,7 @@ public class CSVDataService implements DataService {
         Date birthDate = DateConverter.stringToDate(birthDateString);
 
         if (!Validator.checkDate(birthDate)) {
-            System.out.println(csvDataFileName + " has invalid date format.");
+            System.out.print(csvDataFileName + " has invalid date format ");
             return null;
         }
 
@@ -68,7 +68,7 @@ public class CSVDataService implements DataService {
         int credits = StringConverter.stringToInt(creditString);
 
         if (!Validator.checkCredit(credits)) {
-            System.out.println(csvDataFileName + " has invalid credit format.");
+            System.out.print(csvDataFileName + " has invalid credit format ");
             return null;
         }
 
@@ -97,7 +97,7 @@ public class CSVDataService implements DataService {
         // add new Enrollment object to enrollmentArrayList
         String semester = inReader.nextToken();
         if (!Validator.checkSemester(semester)) {
-            System.out.println(csvDataFileName + " has invalid semester format.");
+            System.out.print(csvDataFileName + " has invalid semester format ");
             return null;
         }
 
@@ -115,6 +115,19 @@ public class CSVDataService implements DataService {
     }
 
     /**
+     * A method to clear all ArrayList
+     * @param enrollmentArrayList: the list of Enrollment objects
+     * @param studentArrayList: the list of Student objects
+     * @param courseArrayList: the list of Course objects
+     */
+    @Override
+    public void clear(ArrayList<Enrollment> enrollmentArrayList, ArrayList<Student> studentArrayList, ArrayList<Course> courseArrayList) {
+        enrollmentArrayList.clear();
+        studentArrayList.clear();
+        courseArrayList.clear();
+    }
+
+    /**
      * A method to read from a CSV file and populate the ArrayList with new data objects
      * @param enrollmentArrayList: the list of Enrollment objects
      * @param studentArrayList: the list of Student objects
@@ -126,25 +139,38 @@ public class CSVDataService implements DataService {
         try {
             Scanner fileInput = new Scanner(new File("src/files/data/" + csvDataFileName));
             String line;
+            int linePos = 1;
 
             while ((line = fileInput.nextLine()) != null) {
                 StringTokenizer inReader = new StringTokenizer(line, ",");
                 if (inReader.countTokens() != 7) {
-                    System.out.println(csvDataFileName + " does not have enough fields");
+                    System.out.println(csvDataFileName + " does not have enough fields at line " + linePos);
+                    clear(enrollmentArrayList, studentArrayList, courseArrayList);
                     return false;
                 } else {
                     Student newStudent = getNewStudent(studentArrayList, inReader);
-                    Course newCourse = getNewCourse(courseArrayList, inReader);
-                    Enrollment newEnrollment = getNewEnrollment(enrollmentArrayList, newStudent, newCourse, inReader);
+                    if (newStudent == null) {
+                        System.out.print("at line " + linePos);
+                        clear(enrollmentArrayList, studentArrayList, courseArrayList);
+                        return false;
+                    }
 
-                    // empty all arrayLists if there is invalid field in the csv
-                    if (newStudent == null || newCourse == null || newEnrollment == null) {
-                        enrollmentArrayList.clear();
-                        studentArrayList.clear();
-                        courseArrayList.clear();
+                    Course newCourse = getNewCourse(courseArrayList, inReader);
+                    if (newCourse == null) {
+                        System.out.print("at line " + linePos);
+                        clear(enrollmentArrayList, studentArrayList, courseArrayList);
+                        return false;
+                    }
+
+                    Enrollment newEnrollment = getNewEnrollment(enrollmentArrayList, newStudent, newCourse, inReader);
+                    if (newEnrollment == null) {
+                        System.out.print("at line " + linePos);
+                        clear(enrollmentArrayList, studentArrayList, courseArrayList);
                         return false;
                     }
                 }
+
+                linePos++;
             }
 
 

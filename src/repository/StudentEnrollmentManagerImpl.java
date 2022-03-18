@@ -29,9 +29,7 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
      * @return true if the ArrayLists are populated successfully
      */
     public boolean populateData(){
-        enrollmentList.clear();
-        studentList.clear();
-        courseList.clear();
+        dataService.clear(enrollmentList, studentList, courseList);
         return dataService.populateArrayList(enrollmentList, studentList, courseList);
     }
 
