@@ -13,6 +13,7 @@ public class CSVWriterService implements WriterService {
     private final String fileName;
 
     public CSVWriterService(String id, String semester) {
+
         this.fileName = id + "_" + semester;
     }
 
@@ -21,15 +22,17 @@ public class CSVWriterService implements WriterService {
     }
 
     @Override
-    public boolean writeCoursesOfOneStudentOneSem(ArrayList<Course> resultCourseList) {
+    public boolean writeCourses(ArrayList<Course> resultCourseList) {
         PrintWriter output;
         try {
-            output = new PrintWriter(new FileWriter("/src/files/" + fileName + "_courses"));
+            output = new PrintWriter(new FileWriter("src/files/courses/" + fileName + "_courses.csv"));
             output.println("Course ID,Name,Credit");
 
             for (Course course : resultCourseList) {
                 output.println(course.toString());
             }
+
+            output.close();
 
             return true;
         } catch (IOException e) {
@@ -39,33 +42,17 @@ public class CSVWriterService implements WriterService {
     }
 
     @Override
-    public boolean writeStudentsOfOneCourseOneSem(ArrayList<Student> resultStudentList) {
+    public boolean writeStudents(ArrayList<Student> resultStudentList) {
         PrintWriter output;
         try {
-            output = new PrintWriter(new FileWriter("/src/files/" + fileName + "_students"));
+            output = new PrintWriter(new FileWriter("src/files/students/" + fileName + "_students.csv"));
             output.println("Student ID,Name,Birthdate");
 
             for (Student student : resultStudentList) {
                 output.println(student.toString());
             }
 
-            return true;
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
-
-    @Override
-    public boolean writeCoursesOfOneSem(ArrayList<Course> resultCourseList) {
-        PrintWriter output;
-        try {
-            output = new PrintWriter(new FileWriter("/src/files/courses_of_" + fileName));
-            output.println("Course ID,Name,Credit");
-
-            for (Course course : resultCourseList) {
-                output.println(course.toString());
-            }
+            output.close();
 
             return true;
         } catch (IOException e) {
