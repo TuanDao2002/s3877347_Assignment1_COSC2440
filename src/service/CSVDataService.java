@@ -124,7 +124,7 @@ public class CSVDataService implements DataService {
     @Override
     public boolean populateArrayList(ArrayList<Enrollment> enrollmentArrayList, ArrayList<Student> studentArrayList, ArrayList<Course> courseArrayList) {
         try {
-            Scanner fileInput = new Scanner(new File("src/files/" + csvDataFileName));
+            Scanner fileInput = new Scanner(new File("src/files/data/" + csvDataFileName));
             String line;
 
             while ((line = fileInput.nextLine()) != null) {
