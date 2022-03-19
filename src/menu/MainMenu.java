@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class MainMenu extends Menu {
     public MainMenu() {
-       super("MAIN MENU", new ArrayList<>(List.of("Manage enrollments", "Manage students", "Manage courses", "Exit")));
+       super("MAIN MENU", new ArrayList<>(List.of("Manage enrollments", "Get report", "Exit")));
     }
 
     @Override
@@ -31,9 +31,6 @@ public class MainMenu extends Menu {
                     System.out.println("Option 2");
                     break;
                 case "3":
-                    System.out.println("Option 3");
-                    break;
-                case "4":
                     System.out.println("Program exits!");
                     break;
                 default:
