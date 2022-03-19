@@ -5,15 +5,18 @@ import repository.StudentEnrollmentManager;
 import java.util.ArrayList;
 
 public abstract class Menu {
-    private final StudentEnrollmentManager studentEnrollmentManager;
+    private StudentEnrollmentManager studentEnrollmentManager;
     private String menuName;
     private ArrayList<String> options;
-    private static int length = 50;
 
     public Menu(StudentEnrollmentManager studentEnrollmentManager, String menuName, ArrayList<String> options) {
         this.studentEnrollmentManager = studentEnrollmentManager;
         this.menuName = menuName;
         this.options = options;
+    }
+
+    public void setStudentEnrollmentManager(StudentEnrollmentManager studentEnrollmentManager) {
+        this.studentEnrollmentManager = studentEnrollmentManager;
     }
 
     private void printLine(int length, char symbol) {
@@ -38,6 +41,7 @@ public abstract class Menu {
     }
 
     public void displayOptions() {
+        int length = 50;
         displayMenuName(length, menuName);
 
         System.out.println("Choose an option");
@@ -47,6 +51,7 @@ public abstract class Menu {
 
         printLine(length, '-');
         System.out.println();
+        System.out.print("Option: ");
     }
 
     public abstract void processOptions();

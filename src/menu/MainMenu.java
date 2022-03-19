@@ -13,9 +13,8 @@ public class MainMenu extends Menu {
 
     @Override
     public void processOptions() {
-        displayOptions();
-        System.out.print("Option: ");
         Scanner scanner = new Scanner(System.in);
+        displayOptions();
         int option = scanner.nextInt();
 
         switch (option) {
