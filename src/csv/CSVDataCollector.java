@@ -13,12 +13,14 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class CSVDataCollector implements DataCollector {
-    private static String csvDataFileName = "default.csv";
+    private String csvDataFileName;
 
-    public CSVDataCollector() {}
+    public CSVDataCollector() {
+        this.csvDataFileName = "default.csv";
+    }
 
     public CSVDataCollector(String fileName) {
-        csvDataFileName = fileName;
+        this.csvDataFileName = fileName + ".csv";
     }
 
     /**

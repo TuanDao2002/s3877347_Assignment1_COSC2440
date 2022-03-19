@@ -15,8 +15,17 @@ public abstract class Menu {
         this.options = options;
     }
 
+    public Menu(String menuName, ArrayList<String> options) {
+        this.menuName = menuName;
+        this.options = options;
+    }
+
     public void setStudentEnrollmentManager(StudentEnrollmentManager studentEnrollmentManager) {
         this.studentEnrollmentManager = studentEnrollmentManager;
+    }
+
+    public StudentEnrollmentManager getStudentEnrollmentManager() {
+        return studentEnrollmentManager;
     }
 
     private void printLine(int length, char symbol) {
