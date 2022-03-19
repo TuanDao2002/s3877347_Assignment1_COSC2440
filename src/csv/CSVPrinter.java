@@ -1,4 +1,4 @@
-package service;
+package csv;
 
 import model.Course;
 import model.Student;
@@ -8,15 +8,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class CSVWriterService {
+public class CSVPrinter {
     private final String fileName;
 
-    public CSVWriterService(String id, String semester) {
+    public CSVPrinter(String id, String semester) {
 
         this.fileName = id + "_" + semester;
     }
 
-    public CSVWriterService(String semester) {
+    public CSVPrinter(String semester) {
         this.fileName = semester;
     }
 

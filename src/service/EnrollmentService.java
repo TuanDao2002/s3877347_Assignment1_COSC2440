@@ -1,6 +1,6 @@
 package service;
 
-import interfaces.StudentEnrollmentManager;
+import repository.StudentEnrollmentManager;
 import model.Enrollment;
 
 public class EnrollmentService {

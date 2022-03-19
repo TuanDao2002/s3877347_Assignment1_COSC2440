@@ -1,7 +1,7 @@
 package utility;
 
-import interfaces.CourseManager;
-import interfaces.StudentManager;
+import repository.CourseManager;
+import repository.StudentManager;
 
 import java.util.Date;
 

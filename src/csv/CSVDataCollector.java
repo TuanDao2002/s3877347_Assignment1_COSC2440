@@ -1,9 +1,9 @@
-package service;
+package csv;
 
-import interfaces.DataService;
 import model.Course;
 import model.Enrollment;
 import model.Student;
+import repository.DataCollector;
 import utility.DateConverter;
 import utility.StringConverter;
 import utility.Validator;
@@ -12,12 +12,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class CSVDataService implements DataService {
+public class CSVDataCollector implements DataCollector {
     private static String csvDataFileName = "default.csv";
 
-    public CSVDataService() {}
+    public CSVDataCollector() {}
 
-    public CSVDataService(String fileName) {
+    public CSVDataCollector(String fileName) {
         csvDataFileName = fileName;
     }
 

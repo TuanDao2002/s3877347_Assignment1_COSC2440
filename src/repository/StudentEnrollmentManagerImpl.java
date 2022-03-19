@@ -1,13 +1,9 @@
 package repository;
 
-import interfaces.CourseManager;
-import interfaces.DataService;
-import interfaces.StudentEnrollmentManager;
-import interfaces.StudentManager;
+import csv.CSVDataCollector;
 import model.Course;
 import model.Enrollment;
 import model.Student;
-import service.CSVDataService;
 import utility.Validator;
 
 import java.util.ArrayList;
@@ -16,14 +12,14 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager, S
     private static final ArrayList<Enrollment> enrollmentList = new ArrayList<>();
     private static final  ArrayList<Student> studentList = new ArrayList<>();
     private static final ArrayList<Course> courseList = new ArrayList<>();
-    private final DataService dataService;
+    private final DataCollector dataCollector;
 
     public StudentEnrollmentManagerImpl() {
-        this.dataService = new CSVDataService();
+        this.dataCollector = new CSVDataCollector();
     }
 
     public StudentEnrollmentManagerImpl(String fileName) {
-        this.dataService = new CSVDataService(fileName);
+        this.dataCollector = new CSVDataCollector(fileName);
     }
 
     /**
@@ -31,8 +27,8 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager, S
      * @return true if the ArrayLists are populated successfully
      */
     public boolean populateData(){
-        dataService.clear(enrollmentList, studentList, courseList);
-        return dataService.populateArrayList(enrollmentList, studentList, courseList);
+        dataCollector.clear(enrollmentList, studentList, courseList);
+        return dataCollector.populateArrayList(enrollmentList, studentList, courseList);
     }
 
     /**
