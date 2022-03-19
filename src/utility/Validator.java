@@ -1,11 +1,8 @@
 package utility;
 
-import repository.CourseManager;
 import repository.StudentEnrollmentManager;
 import repository.StudentEnrollmentManagerImpl;
-import repository.StudentManager;
 
-import java.util.Collections;
 import java.util.Date;
 
 public final class Validator {
@@ -35,37 +32,27 @@ public final class Validator {
      * @return true if the semester matches with regex format
      */
     public static boolean checkSemester(String semester) {
-        return semester.matches("^(19|20)\\d{2}[A-C]$");
+        return semester.matches("^(20)\\d{2}[A-C]$");
     }
 
     /**
-     * A method to check if a student ID exists (if the system object can access to Student objects)
-     * @param sem: the system object
+     * A method to check if a student ID exists
+     * @param studentEnrollmentManager: the StudentEnrollmentManager object
      * @param studentID: the student ID required to be checked
      * @return boolean indicates whether the student ID exists or not
      */
-    public static boolean checkStudent(StudentEnrollmentManager sem, String studentID) {
-        if (sem instanceof StudentManager) {
-            return ((StudentManager) sem).getStudentById(studentID) != null;
-        }
-
-        System.out.println("The system cannot check student ID");
-        return false;
+    public static boolean checkStudent(StudentEnrollmentManager studentEnrollmentManager, String studentID) {
+       return studentEnrollmentManager.getStudentById(studentID) != null;
     }
 
     /**
-     * A method to check if a course ID exists (if the system object can access to Course objects)
-     * @param sem: the system object
+     * A method to check if a course ID exists
+     * @param studentEnrollmentManager: the StudentEnrollmentManager object
      * @param courseID: the course ID required to be checked
      * @return boolean indicates whether the course ID exists or not
      */
-    public static boolean checkCourse(StudentEnrollmentManager sem, String courseID) {
-        if (sem instanceof CourseManager) {
-            return ((CourseManager) sem).getCourseById(courseID) != null;
-        }
-
-        System.out.println("The system cannot check course ID");
-        return false;
+    public static boolean checkCourse(StudentEnrollmentManager studentEnrollmentManager, String courseID) {
+       return studentEnrollmentManager.getCourseById(courseID) != null;
     }
 
     /**

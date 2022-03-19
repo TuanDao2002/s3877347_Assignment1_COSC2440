@@ -4,6 +4,7 @@ import repository.StudentEnrollmentManager;
 import model.Course;
 import model.Enrollment;
 import model.Student;
+import utility.Validator;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -24,6 +25,16 @@ public class GetReportService {
      * @return list of courses
      */
     public ArrayList<Course> getAllCoursesOfOneStudentOneSem(String studentID, String semester) {
+        if (!Validator.checkStudent(studentEnrollmentManager, studentID)) {
+            System.out.println("Student with ID: " + studentID + " does not exist.");
+            return null;
+        }
+
+        if (!Validator.checkSemester(semester)) {
+            System.out.println(semester + " is invalid semester format.");
+            return null;
+        }
+
         ArrayList<Course> resultCourseList = new ArrayList<>();
         for (Enrollment enrollment : studentEnrollmentManager.getAll()) {
             if (enrollment.getStudent().getID().equals(studentID) && enrollment.getSemester().equals(semester)) {
@@ -46,6 +57,16 @@ public class GetReportService {
      * @return list of students
      */
     public ArrayList<Student> getAllStudentsOfOneCourseOneSem(String courseID, String semester) {
+        if (!Validator.checkCourse(studentEnrollmentManager, courseID)) {
+            System.out.println("Course with ID: " + courseID + " does not exist.");
+            return null;
+        }
+
+        if (!Validator.checkSemester(semester)) {
+            System.out.println(semester + " is invalid semester format.");
+            return null;
+        }
+
         ArrayList<Student> resultStudentList = new ArrayList<>();
         for (Enrollment enrollment : studentEnrollmentManager.getAll()) {
             if (enrollment.getCourse().getID().equals(courseID) && enrollment.getSemester().equals(semester)) {
@@ -67,6 +88,11 @@ public class GetReportService {
      * @return list of courses
      */
     public ArrayList<Course> getAllCoursesOfOneSemester(String semester) {
+        if (!Validator.checkSemester(semester)) {
+            System.out.println(semester + " is invalid semester format.");
+            return null;
+        }
+
         ArrayList<Course> resultCourseList = new ArrayList<>();
         for (Enrollment enrollment : studentEnrollmentManager.getAll()) {
             if (enrollment.getSemester().equals(semester)) {

@@ -16,11 +16,11 @@ public class MainMenu extends Menu {
         dataMenu.processOptions();
 
         this.setStudentEnrollmentManager(dataMenu.getStudentEnrollmentManager());
-        String option;
-        do {
+
+        while (true) {
             displayOptions();
             Scanner scanner = new Scanner(System.in);
-            option = scanner.nextLine();
+            String option = scanner.nextLine();
 
             switch (option) {
                 case "1":
@@ -28,21 +28,15 @@ public class MainMenu extends Menu {
                     enrollmentMenu.processOptions();
                     break;
                 case "2":
-                    System.out.println("Option 2");
+                    Menu getReportMenu = new GetReportMenu(this.getStudentEnrollmentManager());
+                    getReportMenu.processOptions();
                     break;
                 case "3":
                     System.out.println("Program exits!");
-                    break;
+                    return;
                 default:
                     System.out.println("Not an option. Enter again!\n");
-                    option = null;
             }
-        } while (option == null);
-
-    }
-
-    public static void main(String[] args) {
-        Menu mainMenu = new MainMenu();
-        mainMenu.processOptions();
+        }
     }
 }

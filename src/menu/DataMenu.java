@@ -15,12 +15,10 @@ public class DataMenu extends Menu{
 
     @Override
     public void processOptions() {
-        String option;
-
-        do {
+        while (true) {
             displayOptions();
             Scanner scanner = new Scanner(System.in);
-            option = scanner.nextLine();
+            String option = scanner.nextLine();
 
             switch (option) {
                 case "1":
@@ -29,25 +27,26 @@ public class DataMenu extends Menu{
                     StudentEnrollmentManagerImpl user_semi = new StudentEnrollmentManagerImpl(fileName);
                     if (Validator.checkData(user_semi)) {
                         this.setStudentEnrollmentManager(user_semi);
-                    } else {
-                        option = null;
+                        System.out.println();
+                        return;
                     }
+
                     break;
                 case "2":
                     StudentEnrollmentManagerImpl default_semi = new StudentEnrollmentManagerImpl();
                     if (Validator.checkData(default_semi)) {
                         this.setStudentEnrollmentManager(default_semi);
-                    } else {
-                        option = null;
+                        System.out.println();
+                        return;
                     }
+
                     break;
                 case "3":
                     System.out.println("Program exits");
                     System.exit(0);
                 default:
                     System.out.println("Not an option. Enter again!\n");
-                    option = null;
             }
-        } while (option == null);
+        }
     }
 }

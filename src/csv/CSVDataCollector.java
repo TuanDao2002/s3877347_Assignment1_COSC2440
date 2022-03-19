@@ -99,7 +99,7 @@ public class CSVDataCollector implements DataCollector {
         // add new Enrollment object to enrollmentArrayList
         String semester = inReader.nextToken();
         if (!Validator.checkSemester(semester)) {
-            System.out.print(csvDataFileName + " has invalid semester format ");
+            System.out.print(csvDataFileName + " has invalid semester format (the semester must be at 21st century with A,B or C letter ");
             return null;
         }
 

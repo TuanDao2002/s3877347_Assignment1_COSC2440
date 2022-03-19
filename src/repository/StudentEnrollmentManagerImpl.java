@@ -8,7 +8,7 @@ import utility.Validator;
 
 import java.util.ArrayList;
 
-public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager, StudentManager, CourseManager {
+public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
     private static final ArrayList<Enrollment> enrollmentList = new ArrayList<>();
     private static final  ArrayList<Student> studentList = new ArrayList<>();
     private static final ArrayList<Course> courseList = new ArrayList<>();
@@ -107,11 +107,27 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager, S
      */
     @Override
     public boolean delete(String studentID, String courseID, String semester) {
+        if (!Validator.checkStudent(this, studentID)) {
+            System.out.println("Student with ID: " + studentID + " does not exist.");
+            return false;
+        }
+
+        if (!Validator.checkCourse(this, courseID)) {
+            System.out.println("Course with ID: " + courseID + " does not exist.");
+            return false;
+        }
+
+        if (!Validator.checkSemester(semester)) {
+            System.out.println(semester + " is invalid semester format.");
+            return false;
+        }
+
         Enrollment deleteEnrollment = getOne(studentID, courseID, semester);
         if (deleteEnrollment == null) {
             System.out.println("The enrollment does not exist");
             return false;
         }
+
         enrollmentList.remove(deleteEnrollment);
         return true;
     }

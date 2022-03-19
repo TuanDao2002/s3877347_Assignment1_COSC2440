@@ -16,11 +16,11 @@ public class EnrollmentService {
         }
     }
 
-    public void addEnrollment(String studentID, String courseID, String semester) {
-        studentEnrollmentManager.add(studentID, courseID, semester);
+    public boolean addEnrollment(String studentID, String courseID, String semester) {
+        return studentEnrollmentManager.add(studentID, courseID, semester);
     }
 
-    public void deleteEnrollment(String studentID, String courseID, String semester) {
-        studentEnrollmentManager.delete(studentID, courseID, semester);
+    public boolean deleteEnrollment(String studentID, String courseID, String semester) {
+        return studentEnrollmentManager.delete(studentID, courseID, semester);
     }
 }
