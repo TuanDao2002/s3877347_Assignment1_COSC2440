@@ -24,7 +24,7 @@ public class DataMenu extends Menu{
 
             switch (option) {
                 case "1":
-                    System.out.println("Enter your CSV file name in files folder (does not require .csv at the end): ");
+                    System.out.println("Enter your CSV file name located at ./files/data directory (does not require .csv at the end): ");
                     String fileName = scanner.nextLine();
                     StudentEnrollmentManagerImpl user_semi = new StudentEnrollmentManagerImpl(fileName);
                     if (Validator.checkData(user_semi)) {
