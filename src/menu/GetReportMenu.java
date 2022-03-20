@@ -79,6 +79,27 @@ public class GetReportMenu extends Menu {
     }
 
     /**
+     * A method to ask users if they want to update enrollment for a student in one semester
+     * @param studentID: the student ID of the update
+     * @param semester: the semester of the update
+     * @return boolean indicates that the update was executed
+     */
+    private boolean askToUpdateEnrollment(String studentID, String semester) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Do you want to add or delete new courses from the above list? (Y/N): ");
+        String command = scanner.nextLine();
+        if (command.equalsIgnoreCase("y")) {
+            System.out.println("\nFor courses of student with ID: " + studentID + " in semester: " + semester);
+
+            Menu updateEnrollmentMenu = new UpdateEnrollmentMenu(getStudentEnrollmentManager(), studentID, semester);
+            updateEnrollmentMenu.processOptions();
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * A method to ask users if they want to save the list of courses to CSV file
      * @param studentID: the student ID of the report
      * @param semester: the semester of the report
@@ -98,29 +119,11 @@ public class GetReportMenu extends Menu {
 
             if (csvPrinter.writeCourses(resultCourseList)) {
                 System.out.println("The report is saved in a CSV file!");
+                System.out.println("The CSV file can be found at " + csvPrinter.getDirectory());
+            } else {
+                System.out.println("Cannot save CSV file!");
             }
-
-            System.out.println("The CSV file can be found at " + csvPrinter.getDirectory());
         }
-    }
-
-    /**
-     * A method to ask users if they want to update enrollment for a student in one semester
-     * @param studentID: the student ID of the update
-     * @param semester: the semester of the update
-     * @return boolean indicates that the update was executed
-     */
-    private boolean askToUpdateEnrollment(String studentID, String semester) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Do you want to add or delete new courses from the above list? (Y/N): ");
-        String command = scanner.nextLine();
-        if (command.equalsIgnoreCase("y")) {
-            Menu updateEnrollmentMenu = new UpdateEnrollmentMenu(getStudentEnrollmentManager(), studentID, semester);
-            updateEnrollmentMenu.processOptions();
-            return true;
-        }
-
-        return false;
     }
 
     @Override
@@ -159,7 +162,7 @@ public class GetReportMenu extends Menu {
                         if (!checkCourseList(resultCourseList)) {
                             break;
                         } else {
-                            System.out.println("The list of courses after update: ");
+                            System.out.println("All courses of student with ID: " + studentID + " in semester: " + semester + " after update");
                             for (Course course : resultCourseList) {
                                 System.out.println(course);
                             }

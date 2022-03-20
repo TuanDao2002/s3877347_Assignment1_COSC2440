@@ -1,9 +1,7 @@
 package menu;
 
-import model.Course;
 import repository.StudentEnrollmentManager;
 import service.EnrollmentService;
-import service.GetReportService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +24,6 @@ public class UpdateEnrollmentMenu extends Menu {
     public void processOptions() {
         EnrollmentService enrollmentService = new EnrollmentService(this.getStudentEnrollmentManager());
         while (true) {
-            System.out.println("For student with ID: " + studentID + " in semester: " + semester);
             displayOptions();
             Scanner scanner = new Scanner(System.in);
             String option = scanner.nextLine();
