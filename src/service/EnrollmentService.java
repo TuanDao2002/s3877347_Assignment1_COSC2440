@@ -1,7 +1,8 @@
 package service;
 
 import repository.StudentEnrollmentManager;
-import model.Enrollment;
+import utility.Display;
+import utility.TableDisplay;
 
 public class EnrollmentService {
     private StudentEnrollmentManager studentEnrollmentManager;
@@ -11,9 +12,8 @@ public class EnrollmentService {
     }
 
     public void displayAll() {
-        for (Enrollment enrollment : studentEnrollmentManager.getAll()) {
-            System.out.println(enrollment);
-        }
+        Display tableDisplay = new TableDisplay();
+        tableDisplay.displayEnrollments(studentEnrollmentManager.getAll());
     }
 
     public boolean addEnrollment(String studentID, String courseID, String semester) {

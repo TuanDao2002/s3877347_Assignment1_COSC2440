@@ -5,6 +5,8 @@ import model.Course;
 import model.Student;
 import repository.StudentEnrollmentManager;
 import service.GetReportService;
+import utility.Display;
+import utility.TableDisplay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,6 +130,7 @@ public class GetReportMenu extends Menu {
 
     @Override
     public void processOptions() {
+        Display tableDisplay = new TableDisplay();
         GetReportService getReportService = new GetReportService(getStudentEnrollmentManager());
         while (true) {
             displayOptions();
@@ -153,9 +156,7 @@ public class GetReportMenu extends Menu {
                     }
 
                     System.out.println("All courses of student with ID: " + studentID + " in semester: " + semester);
-                    for (Course course : resultCourseList) {
-                        System.out.println(course);
-                    }
+                    tableDisplay.displayCourses(resultCourseList);
 
                     if (askToUpdateEnrollment(studentID, semester)) {
                         resultCourseList = getReportService.getAllCoursesOfOneStudentOneSem(studentID, semester);
@@ -163,9 +164,7 @@ public class GetReportMenu extends Menu {
                             break;
                         } else {
                             System.out.println("All courses of student with ID: " + studentID + " in semester: " + semester + " after update");
-                            for (Course course : resultCourseList) {
-                                System.out.println(course);
-                            }
+                            tableDisplay.displayCourses(resultCourseList);
                         }
                     }
 
@@ -186,9 +185,7 @@ public class GetReportMenu extends Menu {
                     }
 
                     System.out.println("All students of course with ID: " + courseID + " in semester: " + semester);
-                    for (Student student : resultStudentList) {
-                        System.out.println(student);
-                    }
+                    tableDisplay.displayStudents(resultStudentList);
 
                     askToSaveStudentsToCSV(courseID, semester, resultStudentList);
 
@@ -204,9 +201,7 @@ public class GetReportMenu extends Menu {
                     }
 
                     System.out.println("All courses in semester: " + semester);
-                    for (Course course : resultCourseList) {
-                        System.out.println(course);
-                    }
+                    tableDisplay.displayCourses(resultCourseList);
 
                     askToSaveCoursesToCSV(null, semester, resultCourseList);
 

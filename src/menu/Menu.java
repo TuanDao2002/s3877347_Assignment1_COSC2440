@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public abstract class Menu {
     private StudentEnrollmentManager studentEnrollmentManager;
-    private String menuName;
-    private ArrayList<String> options;
+    private final String menuName;
+    private final ArrayList<String> options;
 
     public Menu(StudentEnrollmentManager studentEnrollmentManager, String menuName, ArrayList<String> options) {
         this.studentEnrollmentManager = studentEnrollmentManager;
@@ -35,9 +35,11 @@ public abstract class Menu {
     }
 
     private void printCenter(int length, String menuName) {
-        printLine((length - menuName.length()) / 2 - 1, ' ');
+        int left = (length - menuName.length()) / 2;
+        int right = length - left - menuName.length();
+        printLine(left, ' ');
         System.out.print(menuName);
-        printLine((length - menuName.length()) / 2, ' ');
+        printLine(right, ' ');
     }
 
     private void displayMenuName(int length, String menuName) {
