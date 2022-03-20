@@ -1,6 +1,6 @@
 package model;
 
-import utility.DateConverter;
+import utility.converter.DateConverter;
 
 import java.util.Date;
 import java.util.Objects;

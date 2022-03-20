@@ -2,6 +2,7 @@ package menu;
 
 import repository.StudentEnrollmentManager;
 import service.EnrollmentService;
+import utility.input.InputGetter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class UpdateEnrollmentMenu extends Menu {
     public void processOptions() {
         EnrollmentService enrollmentService = new EnrollmentService(this.getStudentEnrollmentManager());
         while (true) {
+            System.out.println("\nFor courses of student with ID: " + studentID + " in semester: " + semester);
             displayOptions();
             Scanner scanner = new Scanner(System.in);
             String option = scanner.nextLine();
@@ -31,30 +33,25 @@ public class UpdateEnrollmentMenu extends Menu {
             String courseID;
             switch (option) {
                 case "1":
-                    System.out.println("Enter course ID: ");
-                    courseID = scanner.nextLine();
+                    courseID = InputGetter.getCourseID();
 
                     if (enrollmentService.addEnrollment(studentID, courseID, semester)) {
                         System.out.println("New enrollment is added");
                     }
 
-                    System.out.println();
                     break;
                 case "2":
-                    System.out.println("Enter course ID: ");
-                    courseID = scanner.nextLine();
+                    courseID = InputGetter.getCourseID();
 
                     if (enrollmentService.deleteEnrollment(studentID, courseID, semester)) {
                         System.out.println("The enrollment is deleted");
                     }
 
-                    System.out.println();
                     break;
                 case "3":
-                    System.out.println("Back to Get Report menu!\n");
                     return;
                 default:
-                    System.out.println("Not an option. Enter again!\n");
+                    System.out.println("Not an option. Enter again!");
             }
         }
     }

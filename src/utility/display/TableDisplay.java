@@ -1,4 +1,4 @@
-package utility;
+package utility.display;
 
 import model.Course;
 import model.Enrollment;
@@ -52,6 +52,15 @@ public class TableDisplay implements Display{
         return columnWidths;
     }
 
+    private int getBorderLength(int[] columnWidths) {
+        int borderLength = 1;
+        for (int width : columnWidths) {
+            borderLength += width + 3;
+        }
+
+        return borderLength;
+    }
+
     private void printLine(int length, char symbol) {
         for (int i = 0; i < length; i++) {
             System.out.print(symbol);
@@ -68,20 +77,17 @@ public class TableDisplay implements Display{
 
     private void printRow(String[] fields, int[] columnWidths) {
         for (int i = 0; i < columnWidths.length; i++) {
-            System.out.print(" ");
+            System.out.print("| ");
             printCenter(columnWidths[i], fields[i]);
-            System.out.print(" |");
+            System.out.print(" ");
         }
+
+        System.out.print("|");
         System.out.println();
     }
 
     private void printBorder(int[] columnWidths) {
-        int borderLength = 0;
-        for (int width : columnWidths) {
-            borderLength += width + 3;
-        }
-
-        printLine(borderLength, '-');
+        printLine(getBorderLength(columnWidths), '-');
         System.out.println();
     }
 
@@ -117,6 +123,11 @@ public class TableDisplay implements Display{
 
         // labels of the enrollment table
         String[] labels = new String[]{"Student ID", "Name", "Birthdate", "Course ID", "Name", "Credit", "Semester"};
+
+        printCenter(getBorderLength(columnWidths), "STUDENT ENROLLMENT");
+        System.out.println();
+
+        printBorder(columnWidths);
         printRow(labels, columnWidths);
         printBorder(columnWidths);
 
@@ -133,6 +144,11 @@ public class TableDisplay implements Display{
 
         // labels of the student table
         String[] labels = new String[]{"Student ID", "Name", "Birthdate"};
+
+        printCenter(getBorderLength(studentColumnWidths), "STUDENT LIST");
+        System.out.println();
+
+        printBorder(studentColumnWidths);
         printRow(labels, studentColumnWidths);
         printBorder(studentColumnWidths);
 
@@ -149,6 +165,11 @@ public class TableDisplay implements Display{
 
         // labels of the course table
         String[] labels = new String[]{"Course ID", "Name", "Credit"};
+
+        printCenter(getBorderLength(courseColumnWidths), "COURSE LIST");
+        System.out.println();
+
+        printBorder(courseColumnWidths);
         printRow(labels, courseColumnWidths);
         printBorder(courseColumnWidths);
 

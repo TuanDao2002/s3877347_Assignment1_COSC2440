@@ -4,7 +4,8 @@ import csv.CSVDataCollector;
 import model.Course;
 import model.Enrollment;
 import model.Student;
-import utility.Validator;
+import utility.validator.DataValidator;
+import utility.validator.SystemValidator;
 
 import java.util.ArrayList;
 
@@ -84,7 +85,7 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
             return false;
         }
 
-        if (!Validator.checkSemester(semester)) {
+        if (!DataValidator.checkSemester(semester)) {
             System.out.println(semester + " is invalid semester format.");
             return false;
         }
@@ -107,17 +108,17 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
      */
     @Override
     public boolean delete(String studentID, String courseID, String semester) {
-        if (!Validator.checkStudent(this, studentID)) {
+        if (!SystemValidator.checkStudent(this, studentID)) {
             System.out.println("Student with ID: " + studentID + " does not exist.");
             return false;
         }
 
-        if (!Validator.checkCourse(this, courseID)) {
+        if (!SystemValidator.checkCourse(this, courseID)) {
             System.out.println("Course with ID: " + courseID + " does not exist.");
             return false;
         }
 
-        if (!Validator.checkSemester(semester)) {
+        if (!DataValidator.checkSemester(semester)) {
             System.out.println(semester + " is invalid semester format.");
             return false;
         }

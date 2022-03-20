@@ -4,7 +4,8 @@ import repository.StudentEnrollmentManager;
 import model.Course;
 import model.Enrollment;
 import model.Student;
-import utility.Validator;
+import utility.validator.DataValidator;
+import utility.validator.SystemValidator;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -25,12 +26,12 @@ public class GetReportService {
      * @return list of courses
      */
     public ArrayList<Course> getAllCoursesOfOneStudentOneSem(String studentID, String semester) {
-        if (!Validator.checkStudent(studentEnrollmentManager, studentID)) {
+        if (!SystemValidator.checkStudent(studentEnrollmentManager, studentID)) {
             System.out.println("Student with ID: " + studentID + " does not exist.");
             return null;
         }
 
-        if (!Validator.checkSemester(semester)) {
+        if (!DataValidator.checkSemester(semester)) {
             System.out.println(semester + " is invalid semester format.");
             return null;
         }
@@ -57,12 +58,12 @@ public class GetReportService {
      * @return list of students
      */
     public ArrayList<Student> getAllStudentsOfOneCourseOneSem(String courseID, String semester) {
-        if (!Validator.checkCourse(studentEnrollmentManager, courseID)) {
+        if (!SystemValidator.checkCourse(studentEnrollmentManager, courseID)) {
             System.out.println("Course with ID: " + courseID + " does not exist.");
             return null;
         }
 
-        if (!Validator.checkSemester(semester)) {
+        if (!DataValidator.checkSemester(semester)) {
             System.out.println(semester + " is invalid semester format.");
             return null;
         }
@@ -88,7 +89,7 @@ public class GetReportService {
      * @return list of courses
      */
     public ArrayList<Course> getAllCoursesOfOneSemester(String semester) {
-        if (!Validator.checkSemester(semester)) {
+        if (!DataValidator.checkSemester(semester)) {
             System.out.println(semester + " is invalid semester format.");
             return null;
         }

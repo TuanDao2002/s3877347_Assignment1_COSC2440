@@ -4,16 +4,16 @@ import model.Course;
 import model.Enrollment;
 import model.Student;
 import repository.DataCollector;
-import utility.DateConverter;
-import utility.StringConverter;
-import utility.Validator;
+import utility.validator.DataValidator;
+import utility.converter.DateConverter;
+import utility.converter.StringConverter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
 public class CSVDataCollector implements DataCollector {
-    private String csvDataFileName;
+    private final String csvDataFileName;
 
     public CSVDataCollector() {
         this.csvDataFileName = "default.csv";
@@ -37,7 +37,7 @@ public class CSVDataCollector implements DataCollector {
         String birthDateString = inReader.nextToken();
         Date birthDate = DateConverter.stringToDate(birthDateString);
 
-        if (!Validator.checkDate(birthDate)) {
+        if (!DataValidator.checkDate(birthDate)) {
             System.out.print(csvDataFileName + " has invalid date format ");
             return null;
         }
@@ -69,7 +69,7 @@ public class CSVDataCollector implements DataCollector {
         String creditString = inReader.nextToken();
         int credits = StringConverter.stringToInt(creditString);
 
-        if (!Validator.checkCredit(credits)) {
+        if (!DataValidator.checkCredit(credits)) {
             System.out.print(csvDataFileName + " has invalid credit format ");
             return null;
         }
@@ -98,7 +98,7 @@ public class CSVDataCollector implements DataCollector {
     private Enrollment getNewEnrollment(ArrayList<Enrollment> enrollmentArrayList, Student newStudent, Course newCourse, StringTokenizer inReader) {
         // add new Enrollment object to enrollmentArrayList
         String semester = inReader.nextToken();
-        if (!Validator.checkSemester(semester)) {
+        if (!DataValidator.checkSemester(semester)) {
             System.out.print(csvDataFileName + " has invalid semester format (the semester must be at 21st century with A,B or C letter ");
             return null;
         }

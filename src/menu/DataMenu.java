@@ -1,7 +1,7 @@
 package menu;
 
 import repository.StudentEnrollmentManagerImpl;
-import utility.Validator;
+import utility.validator.SystemValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class DataMenu extends Menu{
                     System.out.println("Enter your CSV file name located at the directory src/files/data (does not require .csv at the end): ");
                     String fileName = scanner.nextLine();
                     StudentEnrollmentManagerImpl user_semi = new StudentEnrollmentManagerImpl(fileName);
-                    if (Validator.checkData(user_semi)) {
+                    if (SystemValidator.checkData(user_semi)) {
                         this.setStudentEnrollmentManager(user_semi);
                         System.out.println();
                         return;
@@ -34,7 +34,7 @@ public class DataMenu extends Menu{
                     break;
                 case "2":
                     StudentEnrollmentManagerImpl default_semi = new StudentEnrollmentManagerImpl();
-                    if (Validator.checkData(default_semi)) {
+                    if (SystemValidator.checkData(default_semi)) {
                         this.setStudentEnrollmentManager(default_semi);
                         System.out.println();
                         return;

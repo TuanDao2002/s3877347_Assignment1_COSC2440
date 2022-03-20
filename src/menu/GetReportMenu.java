@@ -5,8 +5,9 @@ import model.Course;
 import model.Student;
 import repository.StudentEnrollmentManager;
 import service.GetReportService;
-import utility.Display;
-import utility.TableDisplay;
+import utility.display.Display;
+import utility.display.TableDisplay;
+import utility.input.InputGetter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,8 +92,6 @@ public class GetReportMenu extends Menu {
         System.out.println("Do you want to add or delete new courses from the above list? (Y/N): ");
         String command = scanner.nextLine();
         if (command.equalsIgnoreCase("y")) {
-            System.out.println("\nFor courses of student with ID: " + studentID + " in semester: " + semester);
-
             Menu updateEnrollmentMenu = new UpdateEnrollmentMenu(getStudentEnrollmentManager(), studentID, semester);
             updateEnrollmentMenu.processOptions();
             return true;
@@ -143,14 +142,10 @@ public class GetReportMenu extends Menu {
 
             switch (option) {
                 case "1":
-                    System.out.println("Enter student ID: ");
-                    studentID = scanner.nextLine();
-
-                    System.out.println("Enter semester: ");
-                    semester = scanner.nextLine();
+                    studentID = InputGetter.getStudentID();
+                    semester = InputGetter.getSemester();
 
                     resultCourseList = getReportService.getAllCoursesOfOneStudentOneSem(studentID, semester);
-
                     if (!checkCourseList(resultCourseList)) {
                         break;
                     }
@@ -158,7 +153,9 @@ public class GetReportMenu extends Menu {
                     System.out.println("All courses of student with ID: " + studentID + " in semester: " + semester);
                     tableDisplay.displayCourses(resultCourseList);
 
+                    boolean backFromUpdateMenu = false;
                     if (askToUpdateEnrollment(studentID, semester)) {
+                        backFromUpdateMenu = true;
                         resultCourseList = getReportService.getAllCoursesOfOneStudentOneSem(studentID, semester);
                         if (!checkCourseList(resultCourseList)) {
                             break;
@@ -170,14 +167,13 @@ public class GetReportMenu extends Menu {
 
                     askToSaveCoursesToCSV(studentID, semester, resultCourseList);
 
+                    if (backFromUpdateMenu) System.out.println("Back to Get Report menu!");
+
                     System.out.println();
                     break;
                 case "2":
-                    System.out.println("Enter course ID: ");
-                    courseID = scanner.nextLine();
-
-                    System.out.println("Enter semester: ");
-                    semester = scanner.nextLine();
+                    courseID = InputGetter.getCourseID();
+                    semester = InputGetter.getSemester();
 
                     resultStudentList = getReportService.getAllStudentsOfOneCourseOneSem(courseID, semester);
                     if (!checkStudentList(resultStudentList)) {
@@ -192,8 +188,7 @@ public class GetReportMenu extends Menu {
                     System.out.println();
                     break;
                 case "3":
-                    System.out.println("Enter semester: ");
-                    semester = scanner.nextLine();
+                    semester = InputGetter.getSemester();
 
                     resultCourseList = getReportService.getAllCoursesOfOneSemester(semester);
                     if (!checkCourseList(resultCourseList)) {

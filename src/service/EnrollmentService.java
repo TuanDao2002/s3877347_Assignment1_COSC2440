@@ -1,8 +1,8 @@
 package service;
 
 import repository.StudentEnrollmentManager;
-import utility.Display;
-import utility.TableDisplay;
+import utility.display.Display;
+import utility.display.TableDisplay;
 
 public class EnrollmentService {
     private StudentEnrollmentManager studentEnrollmentManager;

@@ -1,4 +1,4 @@
-package utility;
+package utility.display;
 
 import model.Course;
 import model.Enrollment;

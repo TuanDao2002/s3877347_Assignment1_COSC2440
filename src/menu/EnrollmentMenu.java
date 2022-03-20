@@ -2,6 +2,7 @@ package menu;
 
 import repository.StudentEnrollmentManager;
 import service.EnrollmentService;
+import utility.input.InputGetter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,36 +31,24 @@ public class EnrollmentMenu extends Menu{
                     System.out.println();
                     break;
                 case "2":
-                    System.out.println("Enter student ID: ");
-                    studentID = scanner.nextLine();
-
-                    System.out.println("Enter course ID: ");
-                    courseID = scanner.nextLine();
-
-                    System.out.println("Enter semester: ");
-                    semester = scanner.nextLine();
+                    studentID = InputGetter.getStudentID();
+                    courseID = InputGetter.getCourseID();
+                    semester = InputGetter.getSemester();
 
                     if (enrollmentService.addEnrollment(studentID, courseID, semester)) {
-                        System.out.println("New enrollment is added");
+                        System.out.println("New enrollment is added\n");
                     }
 
-                    System.out.println();
                     break;
                 case "3":
-                    System.out.println("Enter student ID: ");
-                    studentID = scanner.nextLine();
-
-                    System.out.println("Enter course ID: ");
-                    courseID = scanner.nextLine();
-
-                    System.out.println("Enter semester: ");
-                    semester = scanner.nextLine();
+                    studentID = InputGetter.getStudentID();
+                    courseID = InputGetter.getCourseID();
+                    semester = InputGetter.getSemester();
 
                     if (enrollmentService.deleteEnrollment(studentID, courseID, semester)) {
-                        System.out.println("The enrollment is deleted");
+                        System.out.println("The enrollment is deleted\n");
                     }
 
-                    System.out.println();
                     break;
                 case "4":
                     System.out.println("Back to Main menu!\n");
