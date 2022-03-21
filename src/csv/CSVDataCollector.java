@@ -140,15 +140,22 @@ public class CSVDataCollector implements DataCollector {
     public boolean populateArrayList(ArrayList<Enrollment> enrollmentArrayList, ArrayList<Student> studentArrayList, ArrayList<Course> courseArrayList) {
         try {
             Scanner fileInput = new Scanner(new File("src/files/data/" + csvDataFileName));
-            String line;
-            int linePos = 1;
 
             if (!fileInput.hasNextLine()) {
                 System.out.println(csvDataFileName + " is empty!");
                 return false;
             }
 
+            String line;
+            int linePos = 1;
+
             while ((line = fileInput.nextLine()) != null) {
+                if (line.isEmpty()) {
+                    System.out.println("Line " + linePos + " is empty!");
+                    clear(enrollmentArrayList, studentArrayList, courseArrayList);
+                    return false;
+                }
+
                 StringTokenizer inReader = new StringTokenizer(line, ",");
                 if (inReader.countTokens() != 7) {
                     System.out.println(csvDataFileName + " does not have enough fields at line " + linePos + ".");
