@@ -31,6 +31,7 @@ public class DataMenu extends Menu{
                         return;
                     }
 
+                    System.out.println();
                     break;
                 case "2":
                     StudentEnrollmentManagerImpl default_semi = new StudentEnrollmentManagerImpl();
@@ -40,6 +41,7 @@ public class DataMenu extends Menu{
                         return;
                     }
 
+                    System.out.println();
                     break;
                 case "3":
                     System.out.println("Program exits");

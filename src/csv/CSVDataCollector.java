@@ -4,7 +4,7 @@ import model.Course;
 import model.Enrollment;
 import model.Student;
 import repository.DataCollector;
-import utility.validator.DataValidator;
+import utility.validator.FieldValidator;
 import utility.converter.DateConverter;
 import utility.converter.StringConverter;
 
@@ -37,7 +37,7 @@ public class CSVDataCollector implements DataCollector {
         String birthDateString = inReader.nextToken();
         Date birthDate = DateConverter.stringToDate(birthDateString);
 
-        if (!DataValidator.checkDate(birthDate)) {
+        if (!FieldValidator.checkDate(birthDate)) {
             System.out.print(csvDataFileName + " has invalid date format ");
             return null;
         }
@@ -69,7 +69,7 @@ public class CSVDataCollector implements DataCollector {
         String creditString = inReader.nextToken();
         int credits = StringConverter.stringToInt(creditString);
 
-        if (!DataValidator.checkCredit(credits)) {
+        if (!FieldValidator.checkCredit(credits)) {
             System.out.print(csvDataFileName + " has invalid credit format ");
             return null;
         }
@@ -98,8 +98,8 @@ public class CSVDataCollector implements DataCollector {
     private Enrollment getNewEnrollment(ArrayList<Enrollment> enrollmentArrayList, Student newStudent, Course newCourse, StringTokenizer inReader) {
         // add new Enrollment object to enrollmentArrayList
         String semester = inReader.nextToken();
-        if (!DataValidator.checkSemester(semester)) {
-            System.out.print(csvDataFileName + " has invalid semester format (the semester must be at 21st century with A,B or C letter ");
+        if (!FieldValidator.checkSemester(semester)) {
+            System.out.print(csvDataFileName + " has invalid semester format (the semester must be at 21st century with A,B or C letter) ");
             return null;
         }
 
@@ -143,30 +143,35 @@ public class CSVDataCollector implements DataCollector {
             String line;
             int linePos = 1;
 
+            if (!fileInput.hasNextLine()) {
+                System.out.println(csvDataFileName + " is empty!");
+                return false;
+            }
+
             while ((line = fileInput.nextLine()) != null) {
                 StringTokenizer inReader = new StringTokenizer(line, ",");
                 if (inReader.countTokens() != 7) {
-                    System.out.println(csvDataFileName + " does not have enough fields at line " + linePos);
+                    System.out.println(csvDataFileName + " does not have enough fields at line " + linePos + ".");
                     clear(enrollmentArrayList, studentArrayList, courseArrayList);
                     return false;
                 } else {
                     Student newStudent = getNewStudent(studentArrayList, inReader);
                     if (newStudent == null) {
-                        System.out.print("at line " + linePos);
+                        System.out.println("at line " + linePos + ".");
                         clear(enrollmentArrayList, studentArrayList, courseArrayList);
                         return false;
                     }
 
                     Course newCourse = getNewCourse(courseArrayList, inReader);
                     if (newCourse == null) {
-                        System.out.print("at line " + linePos);
+                        System.out.println("at line " + linePos + ".");
                         clear(enrollmentArrayList, studentArrayList, courseArrayList);
                         return false;
                     }
 
                     Enrollment newEnrollment = getNewEnrollment(enrollmentArrayList, newStudent, newCourse, inReader);
                     if (newEnrollment == null) {
-                        System.out.print("at line " + linePos);
+                        System.out.println("at line " + linePos + ".");
                         clear(enrollmentArrayList, studentArrayList, courseArrayList);
                         return false;
                     }

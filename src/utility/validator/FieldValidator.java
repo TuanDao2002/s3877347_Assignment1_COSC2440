@@ -2,8 +2,8 @@ package utility.validator;
 
 import java.util.Date;
 
-public final class DataValidator {
-    private DataValidator(){}
+public final class FieldValidator {
+    private FieldValidator(){}
 
     /**
      * A method to validate a Date object

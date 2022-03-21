@@ -39,6 +39,7 @@ public class EnrollmentMenu extends Menu{
                         System.out.println("New enrollment is added\n");
                     }
 
+                    System.out.println();
                     break;
                 case "3":
                     studentID = InputGetter.getStudentID();
@@ -49,6 +50,7 @@ public class EnrollmentMenu extends Menu{
                         System.out.println("The enrollment is deleted\n");
                     }
 
+                    System.out.println();
                     break;
                 case "4":
                     System.out.println("Back to Main menu!\n");

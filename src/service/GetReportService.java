@@ -4,7 +4,7 @@ import repository.StudentEnrollmentManager;
 import model.Course;
 import model.Enrollment;
 import model.Student;
-import utility.validator.DataValidator;
+import utility.validator.FieldValidator;
 import utility.validator.SystemValidator;
 
 import java.util.ArrayList;
@@ -31,8 +31,8 @@ public class GetReportService {
             return null;
         }
 
-        if (!DataValidator.checkSemester(semester)) {
-            System.out.println(semester + " is invalid semester format.");
+        if (!FieldValidator.checkSemester(semester)) {
+            System.out.println(semester + " has invalid semester format (the semester must be at 21st century with A,B or C letter).");
             return null;
         }
 
@@ -63,8 +63,8 @@ public class GetReportService {
             return null;
         }
 
-        if (!DataValidator.checkSemester(semester)) {
-            System.out.println(semester + " is invalid semester format.");
+        if (!FieldValidator.checkSemester(semester)) {
+            System.out.println(semester + " has invalid semester format (the semester must be at 21st century with A,B or C letter).");
             return null;
         }
 
@@ -89,8 +89,8 @@ public class GetReportService {
      * @return list of courses
      */
     public ArrayList<Course> getAllCoursesOfOneSemester(String semester) {
-        if (!DataValidator.checkSemester(semester)) {
-            System.out.println(semester + " is invalid semester format.");
+        if (!FieldValidator.checkSemester(semester)) {
+            System.out.println(semester + " has invalid semester format (the semester must be at 21st century with A,B or C letter).");
             return null;
         }
 
