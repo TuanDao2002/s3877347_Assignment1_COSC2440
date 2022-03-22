@@ -14,13 +14,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GetReportMenu extends Menu {
+    private final GetReportService getReportService;
     public GetReportMenu(StudentEnrollmentManager studentEnrollmentManager) {
-        super(studentEnrollmentManager,
-                "GET REPORT MENU",
+        super("GET REPORT MENU",
                 new ArrayList<>(List.of("Get all courses of one student in a semester",
                         "Get all students of one course in a semester",
                         "Get all courses in a semester",
                         "Back")));
+        this.getReportService = new GetReportService(studentEnrollmentManager);
     }
 
     /**
@@ -130,7 +131,6 @@ public class GetReportMenu extends Menu {
     @Override
     public void processOptions() {
         Display tableDisplay = new TableDisplay();
-        GetReportService getReportService = new GetReportService(getStudentEnrollmentManager());
         while (true) {
             displayOptions();
             Scanner scanner = new Scanner(System.in);

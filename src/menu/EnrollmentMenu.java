@@ -9,16 +9,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class EnrollmentMenu extends Menu{
+    private final EnrollmentService enrollmentService;
 
     public EnrollmentMenu(StudentEnrollmentManager studentEnrollmentManager) {
-        super(studentEnrollmentManager,
-                "ENROLLMENT MENU",
+        super("ENROLLMENT MENU",
                 new ArrayList<>(List.of("View enrollments", "Add enrollment", "Delete enrollment", "Back")));
+        this.enrollmentService = new EnrollmentService(studentEnrollmentManager);
     }
 
     @Override
     public void processOptions() {
-        EnrollmentService enrollmentService = new EnrollmentService(getStudentEnrollmentManager());
         while (true) {
             displayOptions();
             Scanner scanner = new Scanner(System.in);

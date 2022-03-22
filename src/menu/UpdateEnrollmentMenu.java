@@ -11,19 +11,19 @@ import java.util.Scanner;
 public class UpdateEnrollmentMenu extends Menu {
     private final String studentID;
     private final String semester;
+    private final EnrollmentService enrollmentService;
     public UpdateEnrollmentMenu(StudentEnrollmentManager studentEnrollmentManager, String studentID, String semester) {
-        super(studentEnrollmentManager,
-                "UPDATE ENROLLMENT MENU",
+        super("UPDATE ENROLLMENT MENU",
                 new ArrayList<>(List.of("Add new course",
                         "Delete course",
                         "Back")));
         this.studentID = studentID;
         this.semester = semester;
+        this.enrollmentService = new EnrollmentService(studentEnrollmentManager);
     }
 
     @Override
     public void processOptions() {
-        EnrollmentService enrollmentService = new EnrollmentService(this.getStudentEnrollmentManager());
         while (true) {
             System.out.println("\nFor courses of student with ID: " + studentID + " in semester: " + semester);
             displayOptions();
