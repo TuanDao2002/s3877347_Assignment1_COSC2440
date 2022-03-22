@@ -4,7 +4,6 @@ import repository.StudentEnrollmentManager;
 import service.EnrollmentService;
 import utility.input.InputGetter;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
