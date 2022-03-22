@@ -16,7 +16,8 @@ import java.util.Scanner;
 public class GetReportMenu extends Menu {
     private final GetReportService getReportService;
     public GetReportMenu(StudentEnrollmentManager studentEnrollmentManager) {
-        super("GET REPORT MENU",
+        super(studentEnrollmentManager,
+                "GET REPORT MENU",
                 new ArrayList<>(List.of("Get all courses of one student in a semester",
                         "Get all students of one course in a semester",
                         "Get all courses in a semester",
