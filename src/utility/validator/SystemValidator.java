@@ -8,22 +8,22 @@ public final class SystemValidator {
 
     /**
      * A method to check if a student ID exists
-     * @param studentEnrollmentManager: the StudentEnrollmentManager object
+     * @param studentEnrollmentManagerImpl: the StudentEnrollmentManager object
      * @param studentID: the student ID required to be checked
      * @return boolean indicates whether the student ID exists or not
      */
-    public static boolean checkStudent(StudentEnrollmentManager studentEnrollmentManager, String studentID) {
-        return studentEnrollmentManager.getStudentById(studentID) != null;
+    public static boolean checkStudent(StudentEnrollmentManagerImpl studentEnrollmentManagerImpl, String studentID) {
+        return studentEnrollmentManagerImpl.getStudentById(studentID) != null;
     }
 
     /**
      * A method to check if a course ID exists
-     * @param studentEnrollmentManager: the StudentEnrollmentManager object
+     * @param studentEnrollmentManagerImpl: the StudentEnrollmentManagerImpl object
      * @param courseID: the course ID required to be checked
      * @return boolean indicates whether the course ID exists or not
      */
-    public static boolean checkCourse(StudentEnrollmentManager studentEnrollmentManager, String courseID) {
-        return studentEnrollmentManager.getCourseById(courseID) != null;
+    public static boolean checkCourse(StudentEnrollmentManagerImpl studentEnrollmentManagerImpl, String courseID) {
+        return studentEnrollmentManagerImpl.getCourseById(courseID) != null;
     }
 
     /**

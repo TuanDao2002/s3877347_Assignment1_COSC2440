@@ -4,6 +4,7 @@ import repository.StudentEnrollmentManager;
 import service.EnrollmentService;
 import utility.input.InputGetter;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -37,6 +38,7 @@ public class EnrollmentMenu extends Menu{
 
                     if (enrollmentService.addEnrollment(studentID, courseID, semester)) {
                         System.out.println("New enrollment is added\n");
+                        break;
                     }
 
                     System.out.println();
@@ -48,6 +50,7 @@ public class EnrollmentMenu extends Menu{
 
                     if (enrollmentService.deleteEnrollment(studentID, courseID, semester)) {
                         System.out.println("The enrollment is deleted\n");
+                        break;
                     }
 
                     System.out.println();

@@ -1,9 +1,9 @@
 package service;
 
-import repository.StudentEnrollmentManager;
 import model.Course;
 import model.Enrollment;
 import model.Student;
+import repository.StudentEnrollmentManagerImpl;
 import utility.validator.FieldValidator;
 import utility.validator.SystemValidator;
 
@@ -13,10 +13,10 @@ import java.util.LinkedHashSet;
 
 
 public class GetReportService {
-    private StudentEnrollmentManager studentEnrollmentManager;
+    private StudentEnrollmentManagerImpl studentEnrollmentManagerImpl;
 
-    public GetReportService(StudentEnrollmentManager studentEnrollmentManager) {
-        this.studentEnrollmentManager = studentEnrollmentManager;
+    public GetReportService(StudentEnrollmentManagerImpl studentEnrollmentManagerImpl) {
+        this.studentEnrollmentManagerImpl = studentEnrollmentManagerImpl;
     }
 
     /**
@@ -26,7 +26,7 @@ public class GetReportService {
      * @return list of courses
      */
     public ArrayList<Course> getAllCoursesOfOneStudentOneSem(String studentID, String semester) {
-        if (!SystemValidator.checkStudent(studentEnrollmentManager, studentID)) {
+        if (!SystemValidator.checkStudent(studentEnrollmentManagerImpl, studentID)) {
             System.out.println("Student with ID: " + studentID + " does not exist.");
             return null;
         }
@@ -37,7 +37,7 @@ public class GetReportService {
         }
 
         ArrayList<Course> resultCourseList = new ArrayList<>();
-        for (Enrollment enrollment : studentEnrollmentManager.getAll()) {
+        for (Enrollment enrollment : studentEnrollmentManagerImpl.getAll()) {
             if (enrollment.getStudent().getID().equals(studentID) && enrollment.getSemester().equals(semester)) {
                 resultCourseList.add(enrollment.getCourse());
             }
@@ -58,7 +58,7 @@ public class GetReportService {
      * @return list of students
      */
     public ArrayList<Student> getAllStudentsOfOneCourseOneSem(String courseID, String semester) {
-        if (!SystemValidator.checkCourse(studentEnrollmentManager, courseID)) {
+        if (!SystemValidator.checkCourse(studentEnrollmentManagerImpl, courseID)) {
             System.out.println("Course with ID: " + courseID + " does not exist.");
             return null;
         }
@@ -69,7 +69,7 @@ public class GetReportService {
         }
 
         ArrayList<Student> resultStudentList = new ArrayList<>();
-        for (Enrollment enrollment : studentEnrollmentManager.getAll()) {
+        for (Enrollment enrollment : studentEnrollmentManagerImpl.getAll()) {
             if (enrollment.getCourse().getID().equals(courseID) && enrollment.getSemester().equals(semester)) {
                 resultStudentList.add(enrollment.getStudent());
             }
@@ -95,7 +95,7 @@ public class GetReportService {
         }
 
         ArrayList<Course> resultCourseList = new ArrayList<>();
-        for (Enrollment enrollment : studentEnrollmentManager.getAll()) {
+        for (Enrollment enrollment : studentEnrollmentManagerImpl.getAll()) {
             if (enrollment.getSemester().equals(semester)) {
                 resultCourseList.add(enrollment.getCourse());
             }

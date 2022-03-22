@@ -26,7 +26,7 @@ public class DataMenu extends Menu{
                     String fileName = scanner.nextLine();
                     StudentEnrollmentManagerImpl user_semi = new StudentEnrollmentManagerImpl(fileName);
                     if (SystemValidator.checkData(user_semi)) {
-                        this.setStudentEnrollmentManager(user_semi);
+                        this.setStudentEnrollmentManagerImpl(user_semi);
                         System.out.println();
                         return;
                     }
@@ -36,7 +36,7 @@ public class DataMenu extends Menu{
                 case "2":
                     StudentEnrollmentManagerImpl default_semi = new StudentEnrollmentManagerImpl();
                     if (SystemValidator.checkData(default_semi)) {
-                        this.setStudentEnrollmentManager(default_semi);
+                        this.setStudentEnrollmentManagerImpl(default_semi);
                         System.out.println();
                         return;
                     }

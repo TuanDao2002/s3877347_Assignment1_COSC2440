@@ -1,16 +1,16 @@
 package menu;
 
-import repository.StudentEnrollmentManager;
+import repository.StudentEnrollmentManagerImpl;
 
 import java.util.ArrayList;
 
 public abstract class Menu {
-    private StudentEnrollmentManager studentEnrollmentManager;
+    private StudentEnrollmentManagerImpl studentEnrollmentManagerImpl;
     private final String menuName;
     private final ArrayList<String> options;
 
-    public Menu(StudentEnrollmentManager studentEnrollmentManager, String menuName, ArrayList<String> options) {
-        this.studentEnrollmentManager = studentEnrollmentManager;
+    public Menu(StudentEnrollmentManagerImpl studentEnrollmentManagerImpl, String menuName, ArrayList<String> options) {
+        this.studentEnrollmentManagerImpl = studentEnrollmentManagerImpl;
         this.menuName = menuName;
         this.options = options;
     }
@@ -20,12 +20,12 @@ public abstract class Menu {
         this.options = options;
     }
 
-    public void setStudentEnrollmentManager(StudentEnrollmentManager studentEnrollmentManager) {
-        this.studentEnrollmentManager = studentEnrollmentManager;
+    public void setStudentEnrollmentManagerImpl(StudentEnrollmentManagerImpl studentEnrollmentManagerImpl) {
+        this.studentEnrollmentManagerImpl = studentEnrollmentManagerImpl;
     }
 
-    public StudentEnrollmentManager getStudentEnrollmentManager() {
-        return studentEnrollmentManager;
+    public StudentEnrollmentManagerImpl getStudentEnrollmentManagerImpl() {
+        return studentEnrollmentManagerImpl;
     }
 
     private void printLine(int length, char symbol) {

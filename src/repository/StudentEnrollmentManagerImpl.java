@@ -37,7 +37,6 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
      * @param studentID: the student ID of the Student object
      * @return the Student object or null if it does not exist
      */
-    @Override
     public Student getStudentById(String studentID) {
         for (Student student : studentList) {
             if (student.getID().equals(studentID)) {
@@ -53,7 +52,6 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
      * @param courseID: the course ID of the Course object
      * @return the Course object or null if it does not exist
      */
-    @Override
     public Course getCourseById(String courseID) {
         for (Course course : courseList) {
             if (course.getID().equals(courseID)) {

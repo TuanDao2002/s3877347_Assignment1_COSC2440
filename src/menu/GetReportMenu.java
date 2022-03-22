@@ -3,7 +3,7 @@ package menu;
 import csv.CSVPrinter;
 import model.Course;
 import model.Student;
-import repository.StudentEnrollmentManager;
+import repository.StudentEnrollmentManagerImpl;
 import service.GetReportService;
 import utility.display.Display;
 import utility.display.TableDisplay;
@@ -15,14 +15,14 @@ import java.util.Scanner;
 
 public class GetReportMenu extends Menu {
     private final GetReportService getReportService;
-    public GetReportMenu(StudentEnrollmentManager studentEnrollmentManager) {
-        super(studentEnrollmentManager,
+    public GetReportMenu(StudentEnrollmentManagerImpl studentEnrollmentManagerImpl) {
+        super(studentEnrollmentManagerImpl,
                 "GET REPORT MENU",
                 new ArrayList<>(List.of("Get all courses of one student in a semester",
                         "Get all students of one course in a semester",
                         "Get all courses in a semester",
                         "Back")));
-        this.getReportService = new GetReportService(studentEnrollmentManager);
+        this.getReportService = new GetReportService(studentEnrollmentManagerImpl);
     }
 
     /**
@@ -94,7 +94,7 @@ public class GetReportMenu extends Menu {
         System.out.println("Do you want to add or delete new courses from the above list? (Y/N): ");
         String command = scanner.nextLine();
         if (command.equalsIgnoreCase("y")) {
-            Menu updateEnrollmentMenu = new UpdateEnrollmentMenu(getStudentEnrollmentManager(), studentID, semester);
+            Menu updateEnrollmentMenu = new UpdateEnrollmentMenu(getStudentEnrollmentManagerImpl(), studentID, semester);
             updateEnrollmentMenu.processOptions();
             return true;
         }

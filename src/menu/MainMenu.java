@@ -15,7 +15,7 @@ public class MainMenu extends Menu {
         Menu dataMenu = new DataMenu();
         dataMenu.processOptions();
 
-        this.setStudentEnrollmentManager(dataMenu.getStudentEnrollmentManager());
+        this.setStudentEnrollmentManagerImpl(dataMenu.getStudentEnrollmentManagerImpl());
 
         while (true) {
             displayOptions();
@@ -24,11 +24,11 @@ public class MainMenu extends Menu {
 
             switch (option) {
                 case "1":
-                    Menu enrollmentMenu = new EnrollmentMenu(this.getStudentEnrollmentManager());
+                    Menu enrollmentMenu = new EnrollmentMenu(this.getStudentEnrollmentManagerImpl());
                     enrollmentMenu.processOptions();
                     break;
                 case "2":
-                    Menu getReportMenu = new GetReportMenu(this.getStudentEnrollmentManager());
+                    Menu getReportMenu = new GetReportMenu(this.getStudentEnrollmentManagerImpl());
                     getReportMenu.processOptions();
                     break;
                 case "3":
