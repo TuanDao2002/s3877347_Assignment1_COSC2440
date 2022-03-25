@@ -1,8 +1,6 @@
 package repository;
 
-import model.Course;
 import model.Enrollment;
-import model.Student;
 
 import java.util.ArrayList;
 

@@ -108,7 +108,8 @@ public class CSVDataCollector implements DataCollector {
         // if there is duplicate, return the new object immediately without adding it to the arraylist and continuing the program
         for (Enrollment e : enrollmentArrayList) {
             if (e.toString().equals(newEnrollment.toString())) {
-                return newEnrollment;
+                System.out.print("Duplicate enrollment ");
+                return null;
             }
         }
 
