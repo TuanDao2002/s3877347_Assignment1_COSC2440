@@ -3,7 +3,6 @@ package utility.display;
 import model.Course;
 import model.Enrollment;
 import model.Student;
-import repository.StudentEnrollmentManagerImpl;
 
 import java.util.ArrayList;
 
@@ -178,12 +177,5 @@ public class TableDisplay implements Display{
             printRow(attributes, courseColumnWidths);
             printBorder(courseColumnWidths);
         }
-    }
-
-    public static void main(String[] args) {
-        StudentEnrollmentManagerImpl studentEnrollmentManager = new StudentEnrollmentManagerImpl();
-        studentEnrollmentManager.populateData();
-        Display tableDisplay = new TableDisplay();
-        tableDisplay.displayEnrollments(studentEnrollmentManager.getAll());
     }
 }
