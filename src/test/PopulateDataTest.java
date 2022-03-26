@@ -54,5 +54,12 @@ public class PopulateDataTest {
         StudentEnrollmentManagerImpl semi = new StudentEnrollmentManagerImpl("test_empty_file");
         assertFalse(semi.populateData());
     }
+
+    @Test
+    void populateDataTest8() {
+        // test if the system cannot populate data if the csv file does not exist
+        StudentEnrollmentManagerImpl semi = new StudentEnrollmentManagerImpl("samp");
+        assertFalse(semi.populateData());
+    }
 }
 
