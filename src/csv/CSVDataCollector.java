@@ -45,10 +45,8 @@ public class CSVDataCollector implements DataCollector {
         Student newStudent = new Student(studentID, studentName, birthDate);
 
         // if there is duplicate, return the new object immediately without adding it to the arraylist and continuing the program
-        for (Student s : studentArrayList) {
-            if (s.toString().equals(newStudent.toString())) {
-                return newStudent;
-            }
+        if (studentArrayList.contains(newStudent)) {
+            return newStudent;
         }
 
         studentArrayList.add(newStudent);
@@ -77,10 +75,8 @@ public class CSVDataCollector implements DataCollector {
         Course newCourse = new Course(courseID, courseName, credits);
 
         // if there is duplicate, return the new object immediately without adding it to the arraylist and continuing the program
-        for (Course c: courseArrayList) {
-            if (c.toString().equals(newCourse.toString())) {
-                return newCourse;
-            }
+        if (courseArrayList.contains(newCourse)) {
+            return newCourse;
         }
 
         courseArrayList.add(newCourse);
@@ -106,11 +102,9 @@ public class CSVDataCollector implements DataCollector {
         Enrollment newEnrollment = new Enrollment(newStudent, newCourse, semester);
 
         // if there is duplicate, return the new object immediately without adding it to the arraylist and continuing the program
-        for (Enrollment e : enrollmentArrayList) {
-            if (e.toString().equals(newEnrollment.toString())) {
-                System.out.print("Duplicate enrollment ");
-                return null;
-            }
+        if (enrollmentArrayList.contains(newEnrollment)) {
+            System.out.print("Duplicate enrollment ");
+            return null;
         }
 
         enrollmentArrayList.add(newEnrollment);
@@ -152,7 +146,7 @@ public class CSVDataCollector implements DataCollector {
 
             while ((line = fileInput.nextLine()) != null) {
                 if (line.isEmpty()) {
-                    System.out.println("Line " + linePos + " is empty!");
+                    System.out.println(csvDataFileName + " has line " + linePos + " empty!");
                     clear(enrollmentArrayList, studentArrayList, courseArrayList);
                     return false;
                 }
