@@ -1,4 +1,4 @@
-# Student Enrolment System
+# Student Enrollment System
 
 ### Project information
 - This project is part of Assignment 1 Further Programming Course (COSC2440)
