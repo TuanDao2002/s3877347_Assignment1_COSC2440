@@ -54,7 +54,7 @@ public class DeleteEnrollmentTest {
 
     @Test
     void deleteEnrollmentTest6() {
-        // test if the system cannot delete an enrollment if the enrollment does not exists
+        // test if the system cannot delete an enrollment if the enrollment does not exist
         assertFalse(semi.delete("S101312", "COSC4030", "2020A"));
     }
 }

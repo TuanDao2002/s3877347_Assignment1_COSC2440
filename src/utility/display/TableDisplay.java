@@ -90,6 +90,10 @@ public class TableDisplay implements Display{
         System.out.println();
     }
 
+    /**
+     * A method to display list of enrollments
+     * @param enrollmentList: the list of enrollments required to display
+     */
     @Override
     public void displayEnrollments(ArrayList<Enrollment> enrollmentList) {
         ArrayList<Student> students = new ArrayList<>();
@@ -137,6 +141,10 @@ public class TableDisplay implements Display{
         }
     }
 
+    /**
+     * A method to display list of students
+     * @param studentList: the list of students required to display
+     */
     @Override
     public void displayStudents(ArrayList<Student> studentList) {
         int[] studentColumnWidths = getColumnWidthsOfStudents(studentList);
@@ -158,6 +166,10 @@ public class TableDisplay implements Display{
         }
     }
 
+    /**
+     * A method to display list of courses
+     * @param courseList: the list of courses required to display
+     */
     @Override
     public void displayCourses(ArrayList<Course> courseList) {
         int[] courseColumnWidths = getColumnWidthsOfCourses(courseList);
