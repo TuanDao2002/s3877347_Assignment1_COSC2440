@@ -1,7 +1,11 @@
 package menu;
 
-import repository.StudentEnrollmentManager;
+import model.Course;
+import repository.StudentEnrollmentManagerImpl;
 import service.EnrollmentService;
+import service.GetReportService;
+import utility.display.Display;
+import utility.display.TableDisplay;
 import utility.input.InputGetter;
 
 import java.util.ArrayList;
@@ -12,27 +16,47 @@ public class UpdateEnrollmentMenu extends Menu {
     private final String studentID;
     private final String semester;
     private final EnrollmentService enrollmentService;
-    public UpdateEnrollmentMenu(StudentEnrollmentManager studentEnrollmentManager, String studentID, String semester) {
+    private final GetReportService getReportService;
+    public UpdateEnrollmentMenu(StudentEnrollmentManagerImpl studentEnrollmentManagerImpl, String studentID, String semester) {
         super("UPDATE ENROLLMENT MENU",
-                new ArrayList<>(List.of("Add new course",
+                new ArrayList<>(List.of("View course list",
+                        "Add new course",
                         "Delete course",
                         "Back")));
         this.studentID = studentID;
         this.semester = semester;
-        this.enrollmentService = new EnrollmentService(studentEnrollmentManager);
+        this.enrollmentService = new EnrollmentService(studentEnrollmentManagerImpl);
+        this.getReportService = new GetReportService(studentEnrollmentManagerImpl);
     }
 
     @Override
     public void processOptions() {
+        Display tableDisplay = new TableDisplay();
         while (true) {
-            System.out.println("\nFor courses of student with ID: " + studentID + " in semester: " + semester);
+            System.out.println("\n*** For courses of student with ID: " + studentID + " in semester: " + semester + " ***");
             displayOptions();
             Scanner scanner = new Scanner(System.in);
-            String option = scanner.nextLine();
+            String option = scanner.nextLine().trim();
 
             String courseID;
+            ArrayList<Course> updatedCourseList;
             switch (option) {
                 case "1":
+                    updatedCourseList = getReportService.getAllCoursesOfOneStudentOneSem(studentID, semester);
+
+                    if (updatedCourseList == null) {
+                        break;
+                    }
+
+                    if (updatedCourseList.isEmpty()) {
+                        System.out.println("There is no result!");
+                        break;
+                    }
+
+                    System.out.println("All courses of student with ID: " + studentID + " in semester: " + semester);
+                    tableDisplay.displayCourses(updatedCourseList);
+                    break;
+                case "2":
                     courseID = InputGetter.getCourseID();
 
                     if (enrollmentService.addEnrollment(studentID, courseID, semester)) {
@@ -40,7 +64,7 @@ public class UpdateEnrollmentMenu extends Menu {
                     }
 
                     break;
-                case "2":
+                case "3":
                     courseID = InputGetter.getCourseID();
 
                     if (enrollmentService.deleteEnrollment(studentID, courseID, semester)) {
@@ -48,7 +72,7 @@ public class UpdateEnrollmentMenu extends Menu {
                     }
 
                     break;
-                case "3":
+                case "4":
                     return;
                 default:
                     System.out.println("Not an option. Enter again!");

@@ -32,12 +32,11 @@ public class GetReportMenu extends Menu {
      */
     private boolean checkCourseList(ArrayList<Course> resultCourseList) {
         if (resultCourseList == null) {
-            System.out.println();
             return false;
         }
 
         if (resultCourseList.isEmpty()) {
-            System.out.println("There is no result!\n");
+            System.out.println("There is no result!");
             return false;
         }
 
@@ -51,12 +50,11 @@ public class GetReportMenu extends Menu {
      */
     private boolean checkStudentList(ArrayList<Student> resultStudentList) {
         if (resultStudentList == null) {
-            System.out.println();
             return false;
         }
 
         if (resultStudentList.isEmpty()) {
-            System.out.println("There is no result!\n");
+            System.out.println("There is no result!");
             return false;
         }
 
@@ -71,8 +69,8 @@ public class GetReportMenu extends Menu {
      */
     private void askToSaveStudentsToCSV(String courseID, String semester, ArrayList<Student> resultStudentList) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Do you want to save the above report in a CSV file? (Y/N): ");
-        String command = scanner.nextLine();
+        System.out.println("Do you want to save the above report in a CSV file? (Press y or Y to execute. Others to skip): ");
+        String command = scanner.nextLine().trim();
         if (command.equalsIgnoreCase("y")) {
             CSVPrinter csvPrinter = new CSVPrinter(courseID, semester);
             if (csvPrinter.writeStudents(resultStudentList)) {
@@ -91,8 +89,8 @@ public class GetReportMenu extends Menu {
      */
     private boolean askToUpdateEnrollment(String studentID, String semester) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Do you want to add or delete new courses from the above list? (Y/N): ");
-        String command = scanner.nextLine();
+        System.out.println("Do you want to add or delete new courses from the above list? (Press y or Y to execute. Others to skip): ");
+        String command = scanner.nextLine().trim();
         if (command.equalsIgnoreCase("y")) {
             Menu updateEnrollmentMenu = new UpdateEnrollmentMenu(getStudentEnrollmentManagerImpl(), studentID, semester);
             updateEnrollmentMenu.processOptions();
@@ -110,8 +108,8 @@ public class GetReportMenu extends Menu {
      */
     private void askToSaveCoursesToCSV(String studentID, String semester, ArrayList<Course> resultCourseList) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Do you want to save the above report in a CSV file? (Y/N): ");
-        String command = scanner.nextLine();
+        System.out.println("Do you want to save the above report in a CSV file? (Press y or Y to execute. Others to skip): ");
+        String command = scanner.nextLine().trim();
         if (command.equalsIgnoreCase("y")) {
             CSVPrinter csvPrinter;
             if (studentID == null) {
@@ -135,7 +133,7 @@ public class GetReportMenu extends Menu {
         while (true) {
             displayOptions();
             Scanner scanner = new Scanner(System.in);
-            String option = scanner.nextLine();
+            String option = scanner.nextLine().trim();
 
             String studentID, courseID, semester;
             ArrayList<Course> resultCourseList;
@@ -148,6 +146,7 @@ public class GetReportMenu extends Menu {
 
                     resultCourseList = getReportService.getAllCoursesOfOneStudentOneSem(studentID, semester);
                     if (!checkCourseList(resultCourseList)) {
+                        System.out.println();
                         break;
                     }
 
@@ -159,6 +158,8 @@ public class GetReportMenu extends Menu {
                         backFromUpdateMenu = true;
                         resultCourseList = getReportService.getAllCoursesOfOneStudentOneSem(studentID, semester);
                         if (!checkCourseList(resultCourseList)) {
+                            System.out.println("All courses of student with ID: " + studentID + " in semester: " + semester + " is empty!");
+                            System.out.println();
                             break;
                         } else {
                             System.out.println("All courses of student with ID: " + studentID + " in semester: " + semester + " after update");
@@ -178,6 +179,7 @@ public class GetReportMenu extends Menu {
 
                     resultStudentList = getReportService.getAllStudentsOfOneCourseOneSem(courseID, semester);
                     if (!checkStudentList(resultStudentList)) {
+                        System.out.println();
                         break;
                     }
 
@@ -193,6 +195,7 @@ public class GetReportMenu extends Menu {
 
                     resultCourseList = getReportService.getAllCoursesOfOneSemester(semester);
                     if (!checkCourseList(resultCourseList)) {
+                        System.out.println();
                         break;
                     }
 

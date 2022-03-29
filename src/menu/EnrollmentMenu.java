@@ -22,7 +22,7 @@ public class EnrollmentMenu extends Menu{
         while (true) {
             displayOptions();
             Scanner scanner = new Scanner(System.in);
-            String option = scanner.nextLine();
+            String option = scanner.nextLine().trim();
             String studentID, courseID, semester;
 
             switch (option) {

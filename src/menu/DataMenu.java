@@ -18,12 +18,12 @@ public class DataMenu extends Menu{
         while (true) {
             displayOptions();
             Scanner scanner = new Scanner(System.in);
-            String option = scanner.nextLine();
+            String option = scanner.nextLine().trim();
 
             switch (option) {
                 case "1":
                     System.out.println("Enter your CSV file name located at the directory src/files/data (does not require .csv at the end): ");
-                    String fileName = scanner.nextLine();
+                    String fileName = scanner.nextLine().trim();
                     StudentEnrollmentManagerImpl user_semi = new StudentEnrollmentManagerImpl(fileName);
                     if (SystemValidator.checkData(user_semi)) {
                         this.setStudentEnrollmentManagerImpl(user_semi);
@@ -45,6 +45,7 @@ public class DataMenu extends Menu{
                     break;
                 case "3":
                     System.out.println("Program exits");
+                    System.out.println("See you again!");
                     System.exit(0);
                 default:
                     System.out.println("Not an option. Enter again!\n");

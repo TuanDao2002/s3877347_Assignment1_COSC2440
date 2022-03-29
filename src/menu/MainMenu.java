@@ -20,7 +20,7 @@ public class MainMenu extends Menu {
         while (true) {
             displayOptions();
             Scanner scanner = new Scanner(System.in);
-            String option = scanner.nextLine();
+            String option = scanner.nextLine().trim();
 
             switch (option) {
                 case "1":
@@ -33,6 +33,7 @@ public class MainMenu extends Menu {
                     break;
                 case "3":
                     System.out.println("Program exits!");
+                    System.out.println("See you again!");
                     return;
                 default:
                     System.out.println("Not an option. Enter again!\n");

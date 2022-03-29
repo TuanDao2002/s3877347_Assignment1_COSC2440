@@ -12,10 +12,10 @@ public final class InputGetter {
      */
     public static String getStudentID() {
         System.out.println("Enter student ID: ");
-        String studentID = scanner.nextLine();
+        String studentID = scanner.nextLine().trim();
         while (studentID.isEmpty()) {
             System.out.println("Student ID is missing. Enter again: ");
-            studentID = scanner.nextLine();
+            studentID = scanner.nextLine().trim();
         }
 
         return studentID;
@@ -27,10 +27,10 @@ public final class InputGetter {
      */
     public static String getCourseID() {
         System.out.println("Enter course ID: ");
-        String courseID = scanner.nextLine();
+        String courseID = scanner.nextLine().trim();
         while (courseID.isEmpty()) {
             System.out.println("Course ID is missing. Enter again: ");
-            courseID = scanner.nextLine();
+            courseID = scanner.nextLine().trim();
         }
 
         return courseID;
@@ -42,10 +42,10 @@ public final class InputGetter {
      */
     public static String getSemester() {
         System.out.println("Enter semester: ");
-        String semester = scanner.nextLine();
+        String semester = scanner.nextLine().trim();
         while (semester.isEmpty()) {
             System.out.println("Semester is missing. Enter again: ");
-            semester = scanner.nextLine();
+            semester = scanner.nextLine().trim();
         }
 
         return semester;
