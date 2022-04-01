@@ -88,6 +88,19 @@ public class StudentEnrollmentManagerImpl implements StudentEnrollmentManager {
             return false;
         }
 
+        boolean offeredInTheSemester = false;
+        for (Enrollment enrollment : getAll()) {
+            if (enrollment.getSemester().equals(semester) && enrollment.getCourse().equals(course)) {
+                offeredInTheSemester = true;
+                break;
+            }
+        }
+
+        if (!offeredInTheSemester) {
+            System.out.println("Course with ID: " + courseID + " is not offered in semester: " + semester + ".");
+            return false;
+        }
+
         if (getOne(studentID, courseID, semester) != null) {
             System.out.println("The enrollment already exists.");
             return false;

@@ -39,22 +39,22 @@ public class UpdateEnrollmentMenu extends Menu {
             String option = scanner.nextLine().trim();
 
             String courseID;
-            ArrayList<Course> updatedCourseList;
+            ArrayList<Course> courseList;
             switch (option) {
                 case "1":
-                    updatedCourseList = getReportService.getAllCoursesOfOneStudentOneSem(studentID, semester);
+                    courseList = getReportService.getAllCoursesOfOneStudentOneSem(studentID, semester);
 
-                    if (updatedCourseList == null) {
+                    if (courseList == null) {
                         break;
                     }
 
-                    if (updatedCourseList.isEmpty()) {
+                    if (courseList.isEmpty()) {
                         System.out.println("There is no result!");
                         break;
                     }
 
                     System.out.println("All courses of student with ID: " + studentID + " in semester: " + semester);
-                    tableDisplay.displayCourses(updatedCourseList);
+                    tableDisplay.displayCourses(courseList);
                     break;
                 case "2":
                     courseID = InputGetter.getCourseID();
