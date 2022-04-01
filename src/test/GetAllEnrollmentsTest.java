@@ -30,7 +30,7 @@ public class GetAllEnrollmentsTest {
     @Test
     void getAllEnrollmentsTest3() {
         // test if the system can increase the size after adding an enrollment
-        semi.add("S102192", "PHYS1230", "2019A");
+        semi.add("S102732", "PHYS1230", "2021A");
         assertEquals(expectedSize + 1, semi.getAll().size());
     }
 
@@ -44,7 +44,7 @@ public class GetAllEnrollmentsTest {
     @Test
     void getAllEnrollmentsTest5() {
         // test if the system cannot change the size if the enrollment is not added successfully
-        semi.add("S102192", "PHYS1230", "221A");
+        semi.add("S102192", "PHYS1230", "2020A");
         assertEquals(expectedSize, semi.getAll().size());
     }
 }

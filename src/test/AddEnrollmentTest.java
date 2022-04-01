@@ -18,7 +18,7 @@ public class AddEnrollmentTest {
     void addEnrollmentTest1() {
         // test if the system can add a new enrollment
         int beforeSize = semi.getAll().size();
-        semi.add("S101312", "COSC4030", "2021A");
+        semi.add("S103821", "COSC4030", "2020C");
         int afterSize = semi.getAll().size();
 
         assertEquals(afterSize, beforeSize + 1);
@@ -54,6 +54,12 @@ public class AddEnrollmentTest {
 
     @Test
     void addEnrollmentTest6() {
+        // test if the system cannot add a new enrollment if the course is not offered in the semester
+        assertFalse(semi.add("S101312", "COSC4030", "2021A"));
+    }
+
+    @Test
+    void addEnrollmentTest7() {
         // test if the system cannot add a new enrollment if the enrollment already exists
         assertFalse(semi.add("S101312", "COSC4030", "2020C"));
     }
