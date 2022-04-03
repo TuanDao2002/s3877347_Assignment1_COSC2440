@@ -31,7 +31,7 @@ public class CSVPrinter {
      * @return boolean indicates whether the list can be written or not
      */
     public boolean writeCourses(ArrayList<Course> resultCourseList) {
-        this.directory = "src/files/courses/" + fileName + "_courses.csv";
+        this.directory = "files/courses/" + fileName + "_courses.csv";
         PrintWriter output;
         try {
             output = new PrintWriter(new FileWriter(directory));
@@ -56,7 +56,7 @@ public class CSVPrinter {
      * @return boolean indicates whether the list can be written or not
      */
     public boolean writeStudents(ArrayList<Student> resultStudentList) {
-        this.directory = "src/files/students/" + fileName + "_students.csv";
+        this.directory = "files/students/" + fileName + "_students.csv";
         PrintWriter output;
         try {
             output = new PrintWriter(new FileWriter(directory));

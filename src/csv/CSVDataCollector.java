@@ -134,7 +134,7 @@ public class CSVDataCollector implements DataCollector {
     @Override
     public boolean populateArrayList(ArrayList<Enrollment> enrollmentArrayList, ArrayList<Student> studentArrayList, ArrayList<Course> courseArrayList) {
         try {
-            Scanner fileInput = new Scanner(new File("src/files/data/" + csvDataFileName));
+            Scanner fileInput = new Scanner(new File("files/data/" + csvDataFileName));
 
             if (!fileInput.hasNextLine()) {
                 System.out.println(csvDataFileName + " is empty!");

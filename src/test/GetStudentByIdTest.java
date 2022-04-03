@@ -38,6 +38,12 @@ public class GetStudentByIdTest {
 
     @Test
     void getStudentByIdTest4() {
+        // test if 2 students with the same ID are the same
+        assertEquals(semi.getStudentById("S101153"), semi.getStudentById("S101153"));
+    }
+
+    @Test
+    void getStudentByIdTest5() {
         // test if a student with an unavailable ID is null
         assertNull(semi.getStudentById("ASD"));
     }

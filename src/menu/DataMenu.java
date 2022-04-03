@@ -22,7 +22,7 @@ public class DataMenu extends Menu{
 
             switch (option) {
                 case "1":
-                    System.out.println("Enter your CSV file name located at the directory src/files/data (does not require .csv at the end): ");
+                    System.out.println("Enter your CSV file name located at the directory files/data (does not require .csv at the end): ");
                     String fileName = scanner.nextLine().trim();
                     StudentEnrollmentManagerImpl user_semi = new StudentEnrollmentManagerImpl(fileName);
                     if (SystemValidator.checkData(user_semi)) {

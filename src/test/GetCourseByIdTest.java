@@ -37,6 +37,13 @@ public class GetCourseByIdTest {
 
     @Test
     void getCourseByIdTest4() {
+        // test if 2 courses with the same ID are the same
+        assertEquals(semi.getCourseById("COSC3321"), semi.getCourseById("COSC3321"));
+    }
+
+
+    @Test
+    void getCourseByIdTest5() {
         // test if a course with an unavailable ID is null
         assertNull(semi.getCourseById("COSC403"));
     }

@@ -14,10 +14,10 @@
 - Run the unit tests at "src/test" to test the system
 
 ### Note
-- CSV files used to populate data can be found at "src/files/data"
-- CSV files of course lists can be found at "src/files/courses"
-- CSV files of student lists can be found at "src/files/students"
-- Class diagram, use case diagram and report are located at "src" folder
+- CSV files used to populate data can be found at "files/data"
+- CSV files of course lists can be found at "files/courses"
+- CSV files of student lists can be found at "files/students"
+- Class diagram, use case diagram and report are located at folder "src"
 - Link to my GitHub repository: https://github.com/TuanDao2002/s3877347_Assignment1_COSC2440
 
 ### Other tools used
