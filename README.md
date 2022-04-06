@@ -14,6 +14,7 @@
 - Run the unit tests at "src/test" to test the system
 
 ### Note
+- Open and run the project folder "Assignment 1 Further Programming" in Intellij IDEA so the folder "files" can be read by the system
 - CSV files used to populate data can be found at "files/data"
 - CSV files of course lists can be found at "files/courses"
 - CSV files of student lists can be found at "files/students"
